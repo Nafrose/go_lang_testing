@@ -16,7 +16,6 @@ func reverse(s string) string {
 	for i := 0; i < len; i++ {
 		r[i] = s[len-1-i]
 	}
-
 	reverse := string(r)
 
 	return reverse
