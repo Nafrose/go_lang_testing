@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-
-	fmt.Println(reverse("123456"))
-
+	s := ""
+	fmt.Println("Please enter your text to revserse:")
+	fmt.Scanf("%s", &s)
+	fmt.Printf("entered : %s", s)
+	fmt.Println(reverse(s))
 }
 
 func reverse(s string) string {
@@ -16,6 +18,7 @@ func reverse(s string) string {
 	for i := 0; i < len; i++ {
 		r[i] = s[len-1-i]
 	}
+
 	reverse := string(r)
 
 	return reverse
