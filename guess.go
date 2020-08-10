@@ -11,11 +11,11 @@ func main() {
 }
 
 func guess(n int, input []int) int {
-	len := len(input)
+	length := len(input)
 	closest := 0
 	winIndex := 0
 
-	for i := 0; i < len; i++ {
+	for i := 0; i < length; i++ {
 		fDiff := math.Abs(float64(n - input[i]))
 		diff := int(fDiff)
 		if diff <= closest {

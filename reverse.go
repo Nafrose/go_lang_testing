@@ -1,32 +1,13 @@
 package main
 
 import (
-	"bufio"
+	"golang_test/console"
 	"fmt"
-	"os"
-	"strings"
 )
 
-func isEmpty(s string) bool {
-	return len(strings.TrimSpace(s)) == 0
-}
-
-// How to take line from console : https://bit.ly/3iqK0nc, https://bit.ly/2DMnpm8
-func getLine(promptMessage string) (string, error) {
-	reader := bufio.NewReader(os.Stdin)
-
-	if !isEmpty(promptMessage) {
-		fmt.Print(promptMessage)
-	}
-
-	// input, er := reader.ReadString('\n')
-	// input2 := strings.TrimRight(input, "\n")
-
-	return reader.ReadString('\n')
-}
-
+// https://bit.ly/33KAQ0Y | https://bit.ly/3a9Biae
 func main() {
-	s, _ := getLine("Please enter your text to revserse:")
+	s, _ := Getline("Please enter your text to reverse:")
 	fmt.Print("entered : ")
 	fmt.Print(s)
 	var r1, r2 = reverse(s)
@@ -34,18 +15,18 @@ func main() {
 }
 
 func reverse(s string) (string, string) {
-	len := len(s)
-	var r = make([]byte, len)
-	var r2 = make([]byte, len)
-	mid := int(len / 2)
+	length := len(s)
+	var r = make([]byte, length)
+	var r2 = make([]byte, length)
+	mid := int(length / 2)
 
-	for i := 0; i < len; i++ {
-		r[i] = s[len-1-i]
-		fmt.Printf("%c-%c\n", s[i], s[len-1-i])
+	for i := 0; i < length; i++ {
+		r[i] = s[length-1-i]
+		fmt.Printf("%c-%c\n", s[i], s[length-1-i])
 	}
 
 	for i2 := 0; i2 < mid; i2++ {
-		lastIndex := len - 1 - i2
+		lastIndex := length - 1 - i2
 		r2[i2] = s[lastIndex]
 		r2[lastIndex] = s[i2]
 	}

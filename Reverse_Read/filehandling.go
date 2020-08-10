@@ -5,11 +5,11 @@ import (
 )
 
 func reverse(s []byte) []byte {
-	len := len(s)
-	var r = make([]byte, len)
+	var lenOf = len(s)
+	var r = make([]byte, lenOf)
 
-	for i := 0; i < len; i++ {
-		r[i] = s[len-1-i]
+	for i := 0; i < lenOf; i++ {
+		r[i] = s[lenOf-1-i]
 	}
 
 	reverse := r
@@ -31,5 +31,4 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 }
