@@ -20,7 +20,9 @@ func main() {
 	var combinedOutputFromFiles []byte = []byte(outputFromFile + "\n " + string(outputFromOtherFile))
 
 	err = ioutil.WriteFile("CombinedOutputFromFiles.txt", combinedOutputFromFiles, 0644)
-	log.Println(combinedOutputFromFiles)
+	outputString := string(combinedOutputFromFiles)
+
+	log.Println(outputString)
 
 	if err != nil {
 		panic(err)

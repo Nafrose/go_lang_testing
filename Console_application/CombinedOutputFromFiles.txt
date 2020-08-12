@@ -1,0 +1,2 @@
+Hello from cli1
+ output from CLI2
