@@ -1,4 +1,4 @@
-package main
+package consoleCLI
 
 import (
 	"io/ioutil"
