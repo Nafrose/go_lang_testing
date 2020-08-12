@@ -11,6 +11,15 @@ run-03:
 
 run-04:
 	cd "04. parse-testing" && make run
+
+run-04-cmd:
+	cd "04. parse-testing" && make run-cmd
 	
+run-04-ps:
+	cd "04. parse-testing" && make run-ps
+	
+run-04-chrome:
+	cd "04. parse-testing" && make run-chrome
+
 run-05:
 	cd "05. console-app" && make run
