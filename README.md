@@ -1,6 +1,6 @@
 # Golang Explore (Under mentor)
 
-Repository will contain completed tasks assigned by the Supervisor to check and develop understanding of Golang by his supervisee.
+The repository will contain completed tasks assigned by the Supervisor to check and develop an understanding of Golang by his supervisee.
 
 ## Tasks
 
