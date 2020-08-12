@@ -1,7 +1,7 @@
 package main
 
 import (
-	"golang_test/console"
+	"con"
 	"fmt"
 )
 
@@ -31,7 +31,9 @@ func reverse(s string) (string, string) {
 		r2[lastIndex] = s[i2]
 	}
 
-	r2[mid] = s[mid]
+	if length%2 == 1 {
+		r2[mid] = s[mid]
+	}
 
 	reverse := string(r)
 	reverse2 := string(r2)

@@ -9,6 +9,7 @@ func cashier2(askingMoney int) string {
 	notesPossibilities := [9]int{1000, 500, 100, 50, 20, 10, 5, 2, 1}
 	remainingMoney := askingMoney
 	printStacks := make([]string, 0, len(notesPossibilities))
+
 	for _, note := range notesPossibilities {
 		remainingMoney, printStacks = getRemainingAmount(remainingMoney, remainingMoney, note, printStacks)
 
@@ -54,5 +55,7 @@ func cashier(t float64) {
 func main() {
 	printStackAsJson := cashier2(1503)
 	fmt.Println(printStackAsJson)
+	printStackAsJson2 := cashier2(28)
+	fmt.Println(printStackAsJson2)
 	// cashier(1.17)
 }
