@@ -22,7 +22,7 @@ func main() {
 	err = ioutil.WriteFile("CombinedOutputFromFiles.txt", combinedOutputFromFiles, 0644)
 	outputString := string(combinedOutputFromFiles)
 
-	log.Println(outputString)
+	log.Println("\n" + outputString)
 
 	if err != nil {
 		panic(err)
