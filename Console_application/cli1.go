@@ -17,9 +17,11 @@ func main() {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
 
-	var combinedOutputFromFiles []byte = []byte(outputFromFile + " " + string(outputFromOtherFile))
+	var combinedOutputFromFiles []byte = []byte(outputFromFile + "\n " + string(outputFromOtherFile))
 
-	err = ioutil.WriteFile("CombinedOutputFromFiles", combinedOutputFromFiles, 0644)
+	err = ioutil.WriteFile("CombinedOutputFromFiles.txt", combinedOutputFromFiles, 0644)
+	log.Println(combinedOutputFromFiles)
+
 	if err != nil {
 		panic(err)
 	}
