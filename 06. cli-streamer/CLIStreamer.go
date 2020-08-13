@@ -8,55 +8,60 @@ import (
 	"time"
 )
 
-func parseString(s string) string {
+type arguments struct {
+	title    string
+	msg1     string
+	msg2     string
+	delay    int
+	runTimes int
+}
 
+func parseString(s string) string {
 	var indexOfSeparator int = strings.Index(s, "\\n")
 	stringAfterParsing := s[indexOfSeparator+len("\\n"):]
 
 	return stringAfterParsing
 }
 
-func outputFromCSVFile(s string) []string {
+func outputFromCSVFile(s string) arguments {
+	var arguments arguments
+  
 	stringAfterSplit := strings.Split(s, ",")
-	title := stringAfterSplit[0]
-	msg1 := stringAfterSplit[1]
-	msg2 := stringAfterSplit[2]
 	delay := stringAfterSplit[3]
+	streamDelay, _ := strconv.Atoi(delay)
 	iteration := stringAfterSplit[4]
+	runTimes, _ := strconv.Atoi(iteration)
 
-	argumentTitles := []string{title, msg1, msg2, delay, iteration}
+	arguments.title = stringAfterSplit[0]
+	arguments.msg1 = stringAfterSplit[1]
+	arguments.msg2 = stringAfterSplit[2]
+	arguments.delay = streamDelay
+	arguments.runTimes = runTimes
 
-	return argumentTitles
+	return arguments
 }
 
-func streamingMultipleTimes(title, msg1, msg2, delay, iteration string) {
-	streamDelay, _ := strconv.Atoi(delay)
-	runTimes, _ := strconv.Atoi(iteration)
+func streamingMultipleTimes(arg arguments) {
 	incident := 1
-
-	for i := 0; i < runTimes; i++ {
-		fmt.Printf("%s %v -> %s \n", title, incident, msg1)
-		fmt.Printf("%s %v -> %s \n", title, incident, msg2)
-		delayDurating := time.Duration(streamDelay) * time.Second
-		fmt.Printf("\n%s for %d second(s)...\n\n", "Waiting...", streamDelay)
-
+	for i := 0; i < arg.runTimes; i++ {
+		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg1)
+		incident++
+		time.Sleep(time.Duration(arg.delay) * time.Second)
+		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg2)
 		incident++
 		time.Sleep(delayDurating)
 	}
 }
 
 func main() {
-	argumentsProvided := flag.String("args", "Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
+	var sampleArgument string = "Title,Message 1,Message 2,Stream Delay,Run Times"
+
+	argumentsProvided := flag.String("args", sampleArgument, "Write the argument")
+
 	flag.Parse()
 	argumentString := *argumentsProvided
 	argumentsStringAfterParsing := parseString(argumentString)
 	argumentsForStreaming := outputFromCSVFile(argumentsStringAfterParsing)
 
-	streamingMultipleTimes(
-		argumentsForStreaming[0],
-		argumentsForStreaming[1],
-		argumentsForStreaming[2],
-		argumentsForStreaming[3],
-		argumentsForStreaming[4])
-
+	streamingMultipleTimes(argumentsForStreaming)
 }
