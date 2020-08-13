@@ -25,7 +25,7 @@ func parseString(s string) string {
 
 func outputFromCSVFile(s string) arguments {
 	var arguments arguments
-
+  
 	stringAfterSplit := strings.Split(s, ",")
 	delay := stringAfterSplit[3]
 	streamDelay, _ := strconv.Atoi(delay)
@@ -43,13 +43,13 @@ func outputFromCSVFile(s string) arguments {
 
 func streamingMultipleTimes(arg arguments) {
 	incident := 1
-
 	for i := 0; i < arg.runTimes; i++ {
 		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg1)
 		incident++
 		time.Sleep(time.Duration(arg.delay) * time.Second)
 		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg2)
 		incident++
+		time.Sleep(delayDurating)
 	}
 }
 
@@ -57,14 +57,11 @@ func main() {
 	var sampleArgument string = "Title,Message 1,Message 2,Stream Delay,Run Times"
 
 	argumentsProvided := flag.String("args", sampleArgument, "Write the argument")
+
 	flag.Parse()
-
 	argumentString := *argumentsProvided
-
 	argumentsStringAfterParsing := parseString(argumentString)
-
 	argumentsForStreaming := outputFromCSVFile(argumentsStringAfterParsing)
 
 	streamingMultipleTimes(argumentsForStreaming)
-
 }

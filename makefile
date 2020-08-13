@@ -1,6 +1,7 @@
 # Make file CD INTO https://bit.ly/2XSh3ZA | https://bit.ly/31I776g
 
 Chapter01 = "01. file-reverse"
+Chapter06 = "06. cli-streamer"
 
 run-01:
 	cd $(Chapter01) && make run
@@ -25,3 +26,6 @@ run-04-chrome:
 
 run-05:
 	cd "05. console-app" && make run
+
+run-06:
+	cd $(Chapter06) && make run
