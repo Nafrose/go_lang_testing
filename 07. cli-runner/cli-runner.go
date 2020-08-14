@@ -53,14 +53,17 @@ func writeToFile(s string) {
 }
 
 func main() {
-	argumentsProvided := flag.String("args", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
+	argumentsProvided := flag.String("run", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
-	argString := *argumentsProvided
 
-	fmt.Println("arguments passed:")
-	fmt.Println(argumentsProvided)
+	fmt.Println("\n\narguments passed:")
+	fmt.Println(*argumentsProvided)
 
-	cmd := exec.Command("cli-streamer", argString)
+	fmt.Println("\n\nos arguments passed:")
+	fmt.Println(os.Args)
+	// panic("end")
+
+	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
 
 	var stdout, stderr []byte
 	var errStdout, errStderr error
