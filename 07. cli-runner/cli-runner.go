@@ -70,6 +70,7 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 			if err == io.EOF {
 				err = nil
 			}
+
 			return out, err
 		}
 	}
@@ -101,8 +102,17 @@ func main() {
 	argString := compileToCLIArgs(stringArgs)
 
 	cmd := exec.Command("cli-streamer", "arg", argString)
+  
+// 	fmt.Println("\n\narguments passed:")
+// 	fmt.Println(*argumentsProvided)
 
-	var stdout, stderr []byte
+// 	fmt.Println("\n\nos arguments passed:")
+// 	fmt.Println(os.Args)
+// 	// panic("end")
+
+// 	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
+
+  var stdout, stderr []byte
 	var errStdout, errStderr error
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()

@@ -25,7 +25,7 @@ func parseString(s string) string {
 
 func outputFromCSVFile(s string) arguments {
 	var arguments arguments
-  
+
 	stringAfterSplit := strings.Split(s, ",")
 	delay := stringAfterSplit[3]
 	streamDelay, _ := strconv.Atoi(delay)
@@ -46,10 +46,10 @@ func streamingMultipleTimes(arg arguments) {
 	for i := 0; i < arg.runTimes; i++ {
 		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg1)
 		incident++
-		time.Sleep(time.Duration(arg.delay) * time.Second)
+		delayDuration := time.Duration(arg.delay) * time.Second
 		fmt.Printf("%s %v -> %s \n", arg.title, incident, arg.msg2)
 		incident++
-		time.Sleep(delayDurating)
+		time.Sleep(delayDuration)
 	}
 }
 
