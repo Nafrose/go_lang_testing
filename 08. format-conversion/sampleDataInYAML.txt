@@ -1,0 +1,340 @@
+log4go:
+  root:
+    level:
+      _value: ALL
+    appender-ref:
+      - _ref: ColorConsoleAppender
+      - _ref: InfoFileAppender
+      - _ref: DebugFileAppender
+      - _ref: WarningFileAppender
+      - _ref: ErrorFileAppender
+      - _ref: FatalFileAppender
+      - _ref: DiagnosticFileAppender
+      - _ref: Sqlite3Db
+    broad-casting-appender:
+      _ref: HttpServingUsingJson
+    system:
+      _mode: develop
+      _is-enable-json-error: 'false'
+    variable-creator:
+      variable:
+        - _name: logs-root-path
+          _value: .
+        - _name: logs-path
+          _value: '%logs-root-path%/logs'
+        - _name: common-logging-pattern
+          _value: '%common-logging-pattern%'
+    clear-config-appender:
+      _name: clear-on-develop
+  clear-config:
+    run:
+      _index: '1'
+    total-run:
+      _number: ''
+    on-next-run:
+      _is-clear: ''
+    on-every-third-run:
+      _is-clear: ''
+    _name: clear-on-develop
+    _enables-on-system-mode: develop
+  appender:
+    - mapping:
+        - level:
+            _value: ERROR
+          foreColor:
+            _value: White
+          backColor:
+            _value: Red
+        - level:
+            _value: DEBUG
+          backColor:
+            _value: Yellow
+        - level:
+            _value: INFO
+          foreColor:
+            _value: White
+        - level:
+            _value: WARN
+          foreColor:
+            _value: White
+          backColor:
+            _value: Purple
+      layout:
+        conversionPattern:
+          _value: '%date %level %logger - %message%newline'
+        _type: PatternLayout
+      _name: ColorConsoleAppender
+      _type: ColoredConsoleAppender
+    - file:
+        _value: '%logs-path%/%i3% . dated-%week%-%month%-%year%.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Weekly
+      maxSizeRollBackups:
+        _value: '5'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        acceptOnMatch:
+          _value: 'true'
+        levelToMatch:
+          _value: INFO
+        _type: LevelMatchFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: DateTimeInfoFileAppender
+      _type: DateTimeSizeRollingFileAppender
+    - file:
+        _value: '%logs-path%/info.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '10'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: INFO
+          _type: LevelMatchFilter
+        - _type: log4go.Filter.DenyAllFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: InfoFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/debug.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '10'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: DEBUG
+          _type: LevelMatchFilter
+        - _type: log4go.Filter.DenyAllFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: DebugFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/warning.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '10'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: WARN
+          _type: LevelMatchFilter
+        - _type: log4go.Filter.DenyAllFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: WarningFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/all.errors.warning.fatal.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '10'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: ERROR
+          _type: LevelMatchFilter
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: FATAL
+          _type: LevelMatchFilter
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: WARN
+          _type: LevelMatchFilter
+        - _type: log4go.Filter.DenyAllFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: ErrorFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/fatal.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '10'
+      maximumFileSize:
+        _value: 40MB
+      filter:
+        - acceptOnMatch:
+            _value: 'true'
+          levelToMatch:
+            _value: FATAL
+          _type: LevelMatchFilter
+        - _type: log4go.Filter.DenyAllFilter
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: FatalFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/diagnostic.all.logs'
+      appendToFile:
+        _value: 'true'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '2'
+      maximumFileSize:
+        _value: 10MB
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: DiagnosticFileAppender
+      _type: RollingFileAppender
+    - file:
+        _value: '%logs-path%/sqlitedb.logs.db'
+      archive-file:
+        _name: '%logs-path%/sqlite3-arc/%i3% . sqlitedb.logs.db'
+      appendToFile:
+        _value: 'false'
+      rollingStyle:
+        _value: Size
+      maxSizeRollBackups:
+        _value: '2'
+      maximumFileSize:
+        _value: 10MB
+      staticLogFileName:
+        _value: 'false'
+      layout:
+        param:
+          _name: ConversionPattern
+          _value: '%common-logging-pattern%'
+        _type: PatternLayout
+      _name: Sqlite3Db
+      _type: Sqlite3DbLogger
+  auth:
+    role:
+      - user:
+          - _name: admin1
+            _is-changed: 'true'
+            _hash-pass-after-single-run: 'true'
+            _pass: '@*onetime-pass53'
+          - _name: admin2
+            _is-changed: 'true'
+            _hash-pass-after-single-run: 'true'
+            _pass: '@*onetime-pass75'
+        _name: admin
+        _priority: '0'
+      - user:
+          - _name: developer1
+            _is-changed: 'true'
+            _hash-pass-after-single-run: 'true'
+            _pass: '@*onetime-pass53'
+          - _name: developer2
+            _is-changed: 'true'
+            _hash-pass-after-single-run: 'true'
+            _pass: '@*onetime-pass75'
+        _name: developer
+        _priority: '0'
+    _name: basic
+  email-config:
+    _name: gmail1
+  trigger-service:
+    _name: email-phone
+    _email-config: gmail1
+    _phone-config: ''
+    _trigger-on: weekly
+  broadcasting:
+    source:
+      _appender-name: Sqlite3Db
+      _appender-type: Sqlite3DbLogger
+    serve:
+      auth-use:
+        _name: basic
+      _on: localhost
+      _port: '4325'
+      _additional-suffix: /logging/remote
+      _is-auth: 'true'
+      _is-https: 'false'
+    trigger:
+      _name: email-phone
+    _name: HttpServingUsingJson
+    _type: HttpServingUsingJson
+  config-mutator:
+    serve:
+      auth:
+        role:
+          user:
+            - _name: admin1
+              _is-changed: 'true'
+              _hash-pass-after-single-run: 'true'
+              _pass: '@*onetime-pass53'
+            - _name: admin2
+              _is-changed: 'true'
+              _hash-pass-after-single-run: 'true'
+              _pass: '@*onetime-pass75'
+          _name: admin
+          _priority: '0'
+      _on: localhost
+      _port: '4326'
+      _additional-suffix: /logging/configure
+      _is-auth: 'true'
+      _is-https: 'false'
