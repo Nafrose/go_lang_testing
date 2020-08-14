@@ -29,50 +29,11 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 			if err == io.EOF {
 				err = nil
 			}
-			return out, err
+			
+			return out, err		
 		}
 	}
 }
-
-// func runCLIStreamer(s string) string {
-// 	cmd := exec.Command("cli-streamer", s)
-
-// 	var stdout, err []byte
-// 	// var errStdout, errStderr error
-// 	// stdoutIn, _ := cmd.StdoutPipe()
-// 	// stderrIn, _ := cmd.StderrPipe()
-// 	error := cmd.Start()
-// 	if err != nil {
-// 		log.Fatalf("cmd.Start() failed with '%s'\n", err)
-// 	}
-
-// 	// cmd.Wait() should be called only after we finish reading
-// 	// from stdoutIn and stderrIn.
-// 	// wg ensures that we finish
-// 	var wg sync.WaitGroup
-// 	wg.Add(1)
-// 	go func() {
-// 		stdout, error = cmd.CombinedOutput()
-
-// 		wg.Done()
-// 	}()
-
-// 	//stderr, errStderr = copyAndCapture(os.Stderr, stderrIn)
-
-// 	wg.Wait()
-
-// 	error = cmd.Wait()
-// 	if err != nil {
-// 		log.Fatalf("cmd.Run() failed with %s\n", err)
-// 	}
-// 	// if errStdout != nil || errStderr != nil {
-// 	// 	log.Fatal("failed to capture stdout or stderr\n")
-// 	// }
-// 	outStr, errStr := string(stdout), string(err)
-// 	fmt.Printf("\nout:\n%s\nerr:\n%s\n", outStr, errStr)
-
-// 	return outStr
-// }
 
 func writeToFile(s string) {
 	var mutex sync.Mutex
@@ -85,11 +46,10 @@ func writeToFile(s string) {
 			if err != nil {
 				panic(err)
 			}
-
+			
 		}
 		mutex.Unlock()
 	}
-
 }
 
 func main() {
