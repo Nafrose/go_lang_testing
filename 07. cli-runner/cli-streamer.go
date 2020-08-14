@@ -17,26 +17,6 @@ type arguments struct {
 	runTimes   int
 }
 
-// func parseString(s string) []string {
-// 	// separator := "\n"
-// 	// len := len(separator)
-// 	// indexOfFirstSeparator := strings.Index(s, "\n")
-// 	// stringAfterFirstSeparator := s[indexOfFirstSeparator+len:]
-
-// 	// //include validation for number of "\n" more than 1
-// 	// indexOfSecondSeparator := strings.Index(stringAfterFirstSeparator, "\n")
-// 	// fmt.Println(indexOfSecondSeparator)
-
-// 	// stringFromFirstToSecondSeparator := stringAfterFirstSeparator[:indexOfSecondSeparator]
-// 	// stringAfterSecondSeparator := stringAfterFirstSeparator[indexOfSecondSeparator+len:]
-
-// 	// var stringsAfterParsing = make([]string, 2, 2)
-// 	// stringsAfterParsing[0] = stringFromFirstToSecondSeparator
-// 	// stringsAfterParsing[1] = stringAfterSecondSeparator
-
-// 	// return stringsAfterParsing
-// }
-
 func parseString(s string) (string, int) {
 	var indexOfSeparator int = strings.Index(s, "\\n")
 	stringAfterParsing := s[indexOfSeparator+len("\\n"):]
