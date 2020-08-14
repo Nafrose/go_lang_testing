@@ -8,8 +8,57 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 	"sync"
 )
+
+type firstStepArgs struct {
+	argNumber1, argNumber2 string
+}
+
+type arguments struct {
+	runProcess                         int
+	title, msg1, msg2, delay, runTimes string
+}
+
+func parseString(s *string) firstStepArgs {
+	stringToParse := string(*s)
+	var indexOfSeparator int = strings.Index(stringToParse, "\\n")
+	stringAfterParsingSt := stringToParse[indexOfSeparator+len("\\n"):]
+
+	var stringAfterParsing firstStepArgs
+	stringAfterParsing.argNumber1 = stringAfterParsingSt
+
+	return stringAfterParsing
+}
+
+func outputFromCSVFile(s firstStepArgs, runProcess int) arguments {
+	var arguments arguments
+
+	stringAfterSplit := strings.Split(s.argNumber1, ",")
+	arguments.runProcess = runProcess
+	arguments.title = stringAfterSplit[0]
+	arguments.msg1 = stringAfterSplit[1]
+	arguments.msg2 = stringAfterSplit[2]
+	arguments.delay = stringAfterSplit[3]
+	arguments.runTimes = stringAfterSplit[4]
+
+	stringAfterSplit2 := strings.Split(s.argNumber2, ",")
+	arguments.runProcess = runProcess
+	arguments.title = stringAfterSplit2[0]
+	arguments.msg1 = stringAfterSplit2[1]
+	arguments.msg2 = stringAfterSplit2[2]
+	arguments.delay = stringAfterSplit2[3]
+	arguments.runTimes = stringAfterSplit2[4]
+
+	return arguments
+}
+
+func compileToCLIArgs(arg arguments) string {
+	stringAfterCompile := arg.title + arg.msg1 + " " + arg.msg2 + " " + arg.delay + " " + arg.runTimes
+
+	return stringAfterCompile
+}
 
 func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	var out []byte
@@ -56,16 +105,22 @@ func main() {
 	argumentsProvided := flag.String("run", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
 
-	fmt.Println("\n\narguments passed:")
-	fmt.Println(*argumentsProvided)
+	argsProvided := parseString(argumentsProvided)
+	stringArgs := outputFromCSVFile(argsProvided, 2)
+	argString := compileToCLIArgs(stringArgs)
 
-	fmt.Println("\n\nos arguments passed:")
-	fmt.Println(os.Args)
-	// panic("end")
+	cmd := exec.Command("cli-streamer", "arg", argString)
+  
+// 	fmt.Println("\n\narguments passed:")
+// 	fmt.Println(*argumentsProvided)
 
-	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
+// 	fmt.Println("\n\nos arguments passed:")
+// 	fmt.Println(os.Args)
+// 	// panic("end")
 
-	var stdout, stderr []byte
+// 	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
+
+  var stdout, stderr []byte
 	var errStdout, errStderr error
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()
