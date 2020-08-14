@@ -24,7 +24,7 @@ type arguments struct {
 func parseString(s *string) firstStepArgs {
 	stringToParse := string(*s)
 	var indexOfSeparator int = strings.Index(stringToParse, "\\n")
-	stringAfterParsingSt := stringToParse[indexOfSeparator+len("\\n"):]
+	stringAfterParsingSt := stringToParse[indexOfSeparator+len("\\n")+2:]
 
 	var stringAfterParsing firstStepArgs
 	stringAfterParsing.argNumber1 = stringAfterParsingSt
@@ -42,14 +42,6 @@ func outputFromCSVFile(s firstStepArgs, runProcess int) arguments {
 	arguments.msg2 = stringAfterSplit[2]
 	arguments.delay = stringAfterSplit[3]
 	arguments.runTimes = stringAfterSplit[4]
-
-	stringAfterSplit2 := strings.Split(s.argNumber2, ",")
-	arguments.runProcess = runProcess
-	arguments.title = stringAfterSplit2[0]
-	arguments.msg1 = stringAfterSplit2[1]
-	arguments.msg2 = stringAfterSplit2[2]
-	arguments.delay = stringAfterSplit2[3]
-	arguments.runTimes = stringAfterSplit2[4]
 
 	return arguments
 }
