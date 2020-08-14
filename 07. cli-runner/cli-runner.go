@@ -8,8 +8,57 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 	"sync"
 )
+
+type firstStepArgs struct {
+	argNumber1, argNumber2 string
+}
+
+type arguments struct {
+	runProcess                         int
+	title, msg1, msg2, delay, runTimes string
+}
+
+func parseString(s *string) firstStepArgs {
+	stringToParse := string(*s)
+	var indexOfSeparator int = strings.Index(stringToParse, "\\n")
+	stringAfterParsingSt := stringToParse[indexOfSeparator+len("\\n"):]
+
+	var stringAfterParsing firstStepArgs
+	stringAfterParsing.argNumber1 = stringAfterParsingSt
+
+	return stringAfterParsing
+}
+
+func outputFromCSVFile(s firstStepArgs, runProcess int) arguments {
+	var arguments arguments
+
+	stringAfterSplit := strings.Split(s.argNumber1, ",")
+	arguments.runProcess = runProcess
+	arguments.title = stringAfterSplit[0]
+	arguments.msg1 = stringAfterSplit[1]
+	arguments.msg2 = stringAfterSplit[2]
+	arguments.delay = stringAfterSplit[3]
+	arguments.runTimes = stringAfterSplit[4]
+
+	stringAfterSplit2 := strings.Split(s.argNumber2, ",")
+	arguments.runProcess = runProcess
+	arguments.title = stringAfterSplit2[0]
+	arguments.msg1 = stringAfterSplit2[1]
+	arguments.msg2 = stringAfterSplit2[2]
+	arguments.delay = stringAfterSplit2[3]
+	arguments.runTimes = stringAfterSplit2[4]
+
+	return arguments
+}
+
+func compileToCLIArgs(arg arguments) string {
+	stringAfterCompile := arg.title + arg.msg1 + " " + arg.msg2 + " " + arg.delay + " " + arg.runTimes
+
+	return stringAfterCompile
+}
 
 func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	var out []byte
@@ -34,46 +83,6 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	}
 }
 
-// func runCLIStreamer(s string) string {
-// 	cmd := exec.Command("cli-streamer", s)
-
-// 	var stdout, err []byte
-// 	// var errStdout, errStderr error
-// 	// stdoutIn, _ := cmd.StdoutPipe()
-// 	// stderrIn, _ := cmd.StderrPipe()
-// 	error := cmd.Start()
-// 	if err != nil {
-// 		log.Fatalf("cmd.Start() failed with '%s'\n", err)
-// 	}
-
-// 	// cmd.Wait() should be called only after we finish reading
-// 	// from stdoutIn and stderrIn.
-// 	// wg ensures that we finish
-// 	var wg sync.WaitGroup
-// 	wg.Add(1)
-// 	go func() {
-// 		stdout, error = cmd.CombinedOutput()
-
-// 		wg.Done()
-// 	}()
-
-// 	//stderr, errStderr = copyAndCapture(os.Stderr, stderrIn)
-
-// 	wg.Wait()
-
-// 	error = cmd.Wait()
-// 	if err != nil {
-// 		log.Fatalf("cmd.Run() failed with %s\n", err)
-// 	}
-// 	// if errStdout != nil || errStderr != nil {
-// 	// 	log.Fatal("failed to capture stdout or stderr\n")
-// 	// }
-// 	outStr, errStr := string(stdout), string(err)
-// 	fmt.Printf("\nout:\n%s\nerr:\n%s\n", outStr, errStr)
-
-// 	return outStr
-// }
-
 func writeToFile(s string) {
 	var mutex sync.Mutex
 	stringProvidedeInByte := []byte(s)
@@ -89,15 +98,17 @@ func writeToFile(s string) {
 		}
 		mutex.Unlock()
 	}
-
 }
 
 func main() {
-	argumentsProvided := flag.String("args", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
+	argumentsProvided := flag.String("run", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
-	argString := *argumentsProvided
 
-	cmd := exec.Command("cli-streamer", argString)
+	argsProvided := parseString(argumentsProvided)
+	stringArgs := outputFromCSVFile(argsProvided, 2)
+	argString := compileToCLIArgs(stringArgs)
+
+	cmd := exec.Command("cli-streamer", "arg", argString)
 
 	var stdout, stderr []byte
 	var errStdout, errStderr error
