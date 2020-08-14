@@ -29,8 +29,8 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 			if err == io.EOF {
 				err = nil
 			}
-			
-			return out, err		
+
+			return out, err
 		}
 	}
 }
@@ -46,7 +46,7 @@ func writeToFile(s string) {
 			if err != nil {
 				panic(err)
 			}
-			
+
 		}
 		mutex.Unlock()
 	}
@@ -56,6 +56,9 @@ func main() {
 	argumentsProvided := flag.String("args", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
 	argString := *argumentsProvided
+
+	fmt.Println("arguments passed:")
+	fmt.Println(argumentsProvided)
 
 	cmd := exec.Command("cli-streamer", argString)
 
