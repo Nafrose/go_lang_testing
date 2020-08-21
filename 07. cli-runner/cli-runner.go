@@ -112,7 +112,7 @@ func main() {
 
 // 	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
 
-  var stdout, stderr []byte
+    var stdout, stderr []byte
 	var errStdout, errStderr error
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()
