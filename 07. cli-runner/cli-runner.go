@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -21,34 +22,54 @@ type arguments struct {
 	title, msg1, msg2, delay, runTimes string
 }
 
-func parseString(s *string) firstStepArgs {
+func parseString(s *string) string {
+	separator := "\\n"
+	len := len(separator)
 	stringToParse := string(*s)
-	var indexOfSeparator int = strings.Index(stringToParse, "\\n")
-	stringAfterParsingSt := stringToParse[indexOfSeparator+len("\\n")+2:]
+	indexOfFirstSeparator := strings.Index(stringToParse, separator)
+	stringAfterFirstSeparator := stringToParse[indexOfFirstSeparator+len:]
 
-	var stringAfterParsing firstStepArgs
-	stringAfterParsing.argNumber1 = stringAfterParsingSt
+	indexOfSecondSeparator := strings.Index(stringAfterFirstSeparator, separator)
+	if indexOfSecondSeparator < 0 {
+		panic("Please enter arguments in correct format")
+	}
 
-	return stringAfterParsing
+	stringFromFirstToSecondSeparator := stringAfterFirstSeparator[:indexOfSecondSeparator]
+	stringAfterSecondSeparator := stringAfterFirstSeparator[indexOfSecondSeparator+len:]
+
+	var stringsAfterParsing firstStepArgs
+	stringsAfterParsing.argNumber1 = stringFromFirstToSecondSeparator
+	stringsAfterParsing.argNumber2 = stringAfterSecondSeparator
+
+	var combinedStringAfterParsing string = stringsAfterParsing.argNumber1 + "," + stringsAfterParsing.argNumber2
+
+	return combinedStringAfterParsing
 }
 
-func outputFromCSVFile(s firstStepArgs, runProcess int) arguments {
-	var arguments arguments
+func outputFromCSVFile(s string) []arguments {
+	var arguments = make([]arguments, 2)
+	numberOfItemsInArguments := 6
 
-	stringAfterSplit := strings.Split(s.argNumber1, ",")
-	arguments.runProcess = runProcess
-	arguments.title = stringAfterSplit[0]
-	arguments.msg1 = stringAfterSplit[1]
-	arguments.msg2 = stringAfterSplit[2]
-	arguments.delay = stringAfterSplit[3]
-	arguments.runTimes = stringAfterSplit[4]
+	stringAfterSplit := strings.Split(s, ",")
+	for i := 0; i < 2; i++ {
+		arguments[i].runProcess, _ = strconv.Atoi(stringAfterSplit[i*numberOfItemsInArguments+0])
+		arguments[i].title = stringAfterSplit[i*numberOfItemsInArguments+1]
+		arguments[i].msg1 = stringAfterSplit[(i*numberOfItemsInArguments + 2)]
+		arguments[i].msg2 = stringAfterSplit[i*numberOfItemsInArguments+3]
+		arguments[i].delay = stringAfterSplit[i*numberOfItemsInArguments+4]
+		arguments[i].runTimes = stringAfterSplit[i*numberOfItemsInArguments+5]
+	}
 
 	return arguments
 }
 
-func compileToCLIArgs(arg arguments) string {
-	stringAfterCompile := arg.title + arg.msg1 + " " + arg.msg2 + " " + arg.delay + " " + arg.runTimes
+func compileToCLIArgs(arg []arguments) string {
+	var stringArg = make([]string, 2)
+	for i := 0; i < 2; i++ {
+		stringArg[i] = arg[i].title + "," + arg[i].msg1 + "," + arg[i].msg2 + "," + arg[i].delay + "," + arg[i].runTimes
+	}
 
+	stringAfterCompile := strings.Join(stringArg, ",")
 	return stringAfterCompile
 }
 
@@ -70,7 +91,6 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 			if err == io.EOF {
 				err = nil
 			}
-
 			return out, err
 		}
 	}
@@ -91,28 +111,27 @@ func writeToFile(s string) {
 		}
 		mutex.Unlock()
 	}
+
 }
 
 func main() {
-	argumentsProvided := flag.String("run", "Run, Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
+	argumentsProvided := flag.String("run", "Run,Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
+	argStr := string(*argumentsProvided)
+	fmt.Println(argStr)
 
 	argsProvided := parseString(argumentsProvided)
-	stringArgs := outputFromCSVFile(argsProvided, 2)
-	argString := compileToCLIArgs(stringArgs)
+	// fmt.Println("argsProvided:")
+	// fmt.Println(argsProvided)
+	// stringArgs := outputFromCSVFile(argsProvided)
+	// fmt.Println("stringArgs:")
+	// fmt.Println(stringArgs)
+	// argString := compileToCLIArgs(stringArgs)
+	// fmt.Printf("argString: %s \n", argString)
 
-	cmd := exec.Command("cli-streamer", "arg", argString)
-  
-// 	fmt.Println("\n\narguments passed:")
-// 	fmt.Println(*argumentsProvided)
+	cmd := exec.Command("cli-streamer", "-args", argsProvided)
 
-// 	fmt.Println("\n\nos arguments passed:")
-// 	fmt.Println(os.Args)
-// 	// panic("end")
-
-// 	cmd := exec.Command("cli-streamer", "args", *argumentsProvided)
-
-  var stdout, stderr []byte
+	var stdout, stderr []byte
 	var errStdout, errStderr error
 	stdoutIn, _ := cmd.StdoutPipe()
 	stderrIn, _ := cmd.StderrPipe()
@@ -143,7 +162,8 @@ func main() {
 		log.Fatal("failed to capture stdout or stderr\n")
 	}
 	outStr, errStr := string(stdout), string(stderr)
-	fmt.Printf("\nout:\n%s\nerr:\n%s\n", outStr, errStr)
-
+	if errStderr != nil {
+		fmt.Printf("err:\n%s\n", errStr)
+	}
 	writeToFile(outStr)
 }
