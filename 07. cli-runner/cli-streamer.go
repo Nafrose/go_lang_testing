@@ -8,66 +8,52 @@ import (
 	"time"
 )
 
+type firstStepArgs struct {
+	argNumber1, argNumber2 string
+}
+
 type arguments struct {
-	runProcess int
-	title      string
-	msg1       string
-	msg2       string
-	delay      int
-	runTimes   int
+	runProcess, delay, runTimes int
+	title, msg1, msg2           string
 }
 
-func parseString(s string) (string, int) {
-	var indexOfSeparator int = strings.Index(s, "\\n")
-	stringAfterParsing := s[indexOfSeparator+len("\\n"):]
-	// runProcessString := s[indexOfSeparator+len("\\n") : 1]
-	runProcess := 2
+func outputFromCSVFile(s string) []arguments {
+	var arguments = make([]arguments, 2)
+	numberOfArgsProvided := 6
 
-	return stringAfterParsing, runProcess
-}
-
-func outputFromCSVFile(s string, runProcess int) arguments {
-	var arguments arguments
-
-	for i := 0; i < runProcess; i++ {
+	for i := 0; i < 2; i++ {
 		stringAfterSplit := strings.Split(s, ",")
-		delay := stringAfterSplit[4]
-		streamDelay, _ := strconv.Atoi(delay)
-		iteration := stringAfterSplit[5]
-		runTimes, _ := strconv.Atoi(iteration)
 
-		arguments.runProcess = runProcess
-		arguments.title = stringAfterSplit[1]
-		arguments.msg1 = stringAfterSplit[2]
-		arguments.msg2 = stringAfterSplit[3]
-		arguments.delay = streamDelay
-		arguments.runTimes = runTimes
+		arguments[i].runProcess, _ = strconv.Atoi(stringAfterSplit[0+i*numberOfArgsProvided])
+		arguments[i].title = stringAfterSplit[1+i*numberOfArgsProvided]
+		arguments[i].msg1 = stringAfterSplit[2+i*numberOfArgsProvided]
+		arguments[i].msg2 = stringAfterSplit[3+i*numberOfArgsProvided]
+		arguments[i].delay, _ = strconv.Atoi(stringAfterSplit[4+i*numberOfArgsProvided])
+		arguments[i].runTimes, _ = strconv.Atoi(stringAfterSplit[5+i*numberOfArgsProvided])
 	}
 
 	return arguments
 }
 
-func streamingMultipleTimes(arg arguments) {
-	incident := 1
+func streamingMultipleTimes(arg []arguments) {
+	for j := 0; j < 2; j++ {
+		for i := 0; i < arg[j].runTimes; i++ {
+			fmt.Printf("Running process %v %s %v -> %s \n", j+1, arg[j].title, i+1, arg[j].msg1)
+			time.Sleep(time.Duration(arg[j].delay) * time.Second)
+			fmt.Printf("Running process %v %s %v -> %s \n", j+1, arg[j].title, i+1, arg[j].msg2)
+		}
 
-	for i := 0; i < arg.runTimes; i++ {
-		fmt.Printf("Running process %v %s %v -> %s \n", i, arg.title, incident, arg.msg1)
-		incident++
-		time.Sleep(time.Duration(arg.delay) * time.Second)
-		fmt.Printf("Running process %v %s %v -> %s \n", i, arg.title, incident, arg.msg2)
-		incident++
+		fmt.Printf("\n")
 	}
 
 }
 
 func main() {
-	argumentsProvided := flag.String("args", "\nTitle,Message 1,Message 2,2,3", "Write the argument")
+	argumentsProvided := flag.String("args", "\nrunProcess,Title,Message 1,Message 2,2,3", "Write the argument")
 	flag.Parse()
-	argumentString := *argumentsProvided
 
-	argumentsStringAfterParsing, runProcess := parseString(argumentString)
-
-	argumentsForStreaming := outputFromCSVFile(argumentsStringAfterParsing, runProcess)
+	strArgumentsPRovided := *argumentsProvided
+	argumentsForStreaming := outputFromCSVFile(strArgumentsPRovided)
 
 	streamingMultipleTimes(argumentsForStreaming)
 }
