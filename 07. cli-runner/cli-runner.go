@@ -46,33 +46,6 @@ func parseString(s *string) string {
 	return combinedStringAfterParsing
 }
 
-func outputFromCSVFile(s string) []arguments {
-	var arguments = make([]arguments, 2)
-	numberOfItemsInArguments := 6
-
-	stringAfterSplit := strings.Split(s, ",")
-	for i := 0; i < 2; i++ {
-		arguments[i].runProcess, _ = strconv.Atoi(stringAfterSplit[i*numberOfItemsInArguments+0])
-		arguments[i].title = stringAfterSplit[i*numberOfItemsInArguments+1]
-		arguments[i].msg1 = stringAfterSplit[(i*numberOfItemsInArguments + 2)]
-		arguments[i].msg2 = stringAfterSplit[i*numberOfItemsInArguments+3]
-		arguments[i].delay = stringAfterSplit[i*numberOfItemsInArguments+4]
-		arguments[i].runTimes = stringAfterSplit[i*numberOfItemsInArguments+5]
-	}
-
-	return arguments
-}
-
-func compileToCLIArgs(arg []arguments) string {
-	var stringArg = make([]string, 2)
-	for i := 0; i < 2; i++ {
-		stringArg[i] = arg[i].title + "," + arg[i].msg1 + "," + arg[i].msg2 + "," + arg[i].delay + "," + arg[i].runTimes
-	}
-
-	stringAfterCompile := strings.Join(stringArg, ",")
-	return stringAfterCompile
-}
-
 func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	var out []byte
 	buf := make([]byte, 1024, 1024)
@@ -118,16 +91,7 @@ func main() {
 	argumentsProvided := flag.String("run", "Run,Title,Message 1,Message 2,Stream Delay,Run Times", "Write the argument")
 	flag.Parse()
 	argStr := string(*argumentsProvided)
-	fmt.Println(argStr)
-
 	argsProvided := parseString(argumentsProvided)
-	// fmt.Println("argsProvided:")
-	// fmt.Println(argsProvided)
-	// stringArgs := outputFromCSVFile(argsProvided)
-	// fmt.Println("stringArgs:")
-	// fmt.Println(stringArgs)
-	// argString := compileToCLIArgs(stringArgs)
-	// fmt.Printf("argString: %s \n", argString)
 
 	cmd := exec.Command("cli-streamer", "-args", argsProvided)
 
