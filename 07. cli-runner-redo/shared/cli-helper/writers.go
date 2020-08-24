@@ -6,9 +6,17 @@ import (
 	"go.uber.org/zap"
 )
 
+type IWriter interface {
+	Write(line string)
+}
+
+type Writer struct {
+	IWriter
+}
+
 type WritersCollection struct {
-	Writers      []IWriter
-	ErrorWriters []IWriter
+	Writers      []Writer
+	ErrorWriters []Writer
 }
 
 type WritingConfiguration struct {
@@ -29,22 +37,42 @@ func defaultWriteLog(line string) {
 	log.Println(line)
 }
 
-func defaultWriteZapLog(line string) {
-	zapLogger.info(line)
-}
+//func defaultWriteZapLog(line string) {
+//	zapLogger.info(line)
+//}
 
-func CreateDefaultWriter() IWriter {
+func CreateDefaultLogWriter() Writer {
 	return Writer{IsError: false, write: defaultWriteLog}
 }
 
-func CreateDefaultErrorWriter() IWriter {
+func CreateDefaultErrorLogWriter() Writer {
 	return Writer{IsError: true, write: defaultWriteLog}
 }
 
-func CreateDefaultZapWriter() IWriter {
-	return Writer{IsError: false, write: defaultWriteZapLog}
+func CreateDefaultLogWriters() WritersCollection {
+	outLogWriter := CreateDefaultLogWriter()
+	errorLogWriter := CreateDefaultErrorLogWriter()
+
+	writers := WritersCollection{
+		Writers:      []Writer{outLogWriter},
+		ErrorWriters: []Writer{errorLogWriter},
+	}
+
+	return writers
 }
 
-func CreateDefaultZapErrorWriter() IWriter {
-	return Writer{IsError: true, write: defaultWriteZapLog}
+func (wrs *WritersCollection) AttachWriter(w Writer) {
+	wrs.Writers = append(wrs.Writers, w)
 }
+
+func (wrs *WritersCollection) AttachErrorWriter(w Writer) {
+	wrs.ErrorWriters = append(wrs.ErrorWriters, w)
+}
+
+//func CreateDefaultZapWriter() Writer {
+//	return Writer{IsError: false, write: defaultWriteZapLog}
+//}
+//
+//func CreateDefaultZapErrorWriter() Writer {
+//	return Writer{IsError: true, write: defaultWriteZapLog}
+//}

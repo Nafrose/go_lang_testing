@@ -7,12 +7,13 @@ type ProcessConfigProperties struct {
 	Id                string
 	ParentId          string
 	GlobalSessionId   string
-	Config            IWritingConfiguration
+	Config            WritingConfiguration
+	BufferSize        int16
 }
 
 type ProcessConfig struct {
-	writers    IWritersCollection
-	properties IProcessConfigProperties
+	Writers    WritersCollection
+	Properties ProcessConfigProperties
 }
 
 type DefaultJsonInteraction struct {

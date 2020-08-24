@@ -17,3 +17,4 @@
 ## Links
 
 - [go - Anonymous function on struct - Stack Overflow](https://stackoverflow.com/questions/45866477/anonymous-function-on-struct)
+- Abstraction : https://play.golang.org/p/WDB8BqVyJS
