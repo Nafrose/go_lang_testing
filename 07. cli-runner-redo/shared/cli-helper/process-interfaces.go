@@ -1,14 +1,5 @@
 package cliHelper
 
-type IWriter interface{
-	isError bool
-	write()
-}
-
-type IWritersCollection interface{
-	Writers []Writer
-}
-
 type IProcessConfig interface {
 	writers           IWritersCollection
 	config            IWritingConfiguration
@@ -17,21 +8,9 @@ type IProcessConfig interface {
 	parentProcessName string
 }
 
-type IWritingConfiguration interface{
-	isJsonLog	bool
-	// if enabled then write to fmt.Fprintf
-	isWriteToHttp bool
-	// https://github.com/uber-go/zap
-	isLogUsingZap bool
-	isWriteToFile bool
-	writeToFileDirectory string
-	writeToFilePath string
-	isWriteToDirectory bool
-}
-
 type  IDefaultJsonInteration interface{
 	Attributes	struct {
-		Counter	int	`json:"counter"`
+		Counter	int
 		Log	struct {
 			Debug		[]map[string]string
 			Display		[]string

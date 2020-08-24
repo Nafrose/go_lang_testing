@@ -12,6 +12,7 @@ import (
 	_ "sync"
 )
 
-func CreateDefaultErrorLogWriter(config IWritingConfiguration) {
+func CreateDefaultErrorLogWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
 	fmt.Println("error log writer")
+	return ProcessConfig{config: config, title}
 }

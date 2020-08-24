@@ -1,23 +1,28 @@
 package cliHelper
 
-type WritingConfiguration struct {
-	isJsonLog bool
-	// if enabled then write to fmt.Fprintf
-	isWriteToHttp bool
-	// https://github.com/uber-go/zap
-	isLogUsingZap        bool
-	isWriteToFile        bool
-	writeToFileDirectory string
-	writeToFilePath      string
-	isWriteToDirectory   bool
-}
-
-type ProcessConfig struct {
-	writers           IWritersCollection
-	config            IWritingConfiguration
+type ProcessConfigProperties struct {
 	title             string
 	description       string
 	parentProcessName string
+	id                string
+	parentId          string
+	globalSessionId   string
+	config            IWritingConfiguration
+}
+
+type IProcessConfigProperties struct {
+	title             string
+	description       string
+	parentProcessName string
+	id                string
+	parentId          string
+	globalSessionId   string
+	config            IWritingConfiguration
+}
+
+type ProcessConfig struct {
+	writers    IWritersCollection
+	properties IProcessConfigProperties
 }
 
 type DefaultJsonInteration struct {

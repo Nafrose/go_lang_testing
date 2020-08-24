@@ -11,7 +11,7 @@ import (
 	_ "sync"
 )
 
-func CreateDefaultLogWriterConfig(config IWritingConfiguration) IProcessConfig {
+func CreateDefaultLogWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
 	if config.isJsonLog {
 		// write for JSON
 		retun defaultLogJsonWriterConfig(config)
@@ -21,17 +21,18 @@ func CreateDefaultLogWriterConfig(config IWritingConfiguration) IProcessConfig {
 	retun defaultLogWriterConfig(config)
 }
 
-func  defaultLogJsonWriterConfig(config IWritingConfiguration) IProcessConfig {
+func  defaultLogJsonWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
 	fmt.Println("write using JSON log")
-
-	return 
+	defaultJsonWriter := CreateDefaultWriter
+	writers := 
+	return CreateProcessConfig(processConfigProperties, )
 }
 
-func  defaultLogWriterConfig(config IWritingConfiguration) IProcessConfig {
+func  defaultLogWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
 	fmt.Println("write using log")
-
+	processConfigProperties = 
 }
 
-func  defaultZapLogWriterConfig(config IWritingConfiguration) IProcessConfig {
+func  defaultZapLogWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
 	fmt.Println("write using zap")
 }
