@@ -8,7 +8,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strings"
 	"sync"
 )
 
@@ -33,6 +32,16 @@ func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 			return out, err
 		}
 	}
+}
+
+func CreateDefaultLogWriter(config IWritingConfiguration) {
+	if config.isJsonLog {
+		
+	}
+}
+
+func CreateDefaultErrorLogWriter(config IWritingConfiguration) {
+
 }
 
 func writeToFile(s string) {
