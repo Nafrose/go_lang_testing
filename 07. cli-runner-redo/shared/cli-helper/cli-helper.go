@@ -1,4 +1,4 @@
-package main
+package cliHelper
 
 import (
 	"flag"
@@ -11,39 +11,6 @@ import (
 	"strings"
 	"sync"
 )
-
-type firstStepArgs struct {
-	argNumber1, argNumber2 string
-}
-
-type arguments struct {
-	runProcess                         int
-	title, msg1, msg2, delay, runTimes string
-}
-
-func parseString(s *string) string {
-	separator := "\\n"
-	len := len(separator)
-	stringToParse := string(*s)
-	indexOfFirstSeparator := strings.Index(stringToParse, separator)
-	stringAfterFirstSeparator := stringToParse[indexOfFirstSeparator+len:]
-
-	indexOfSecondSeparator := strings.Index(stringAfterFirstSeparator, separator)
-	if indexOfSecondSeparator < 0 {
-		panic("Please enter arguments in correct format")
-	}
-
-	stringFromFirstToSecondSeparator := stringAfterFirstSeparator[:indexOfSecondSeparator]
-	stringAfterSecondSeparator := stringAfterFirstSeparator[indexOfSecondSeparator+len:]
-
-	var stringsAfterParsing firstStepArgs
-	stringsAfterParsing.argNumber1 = stringFromFirstToSecondSeparator
-	stringsAfterParsing.argNumber2 = stringAfterSecondSeparator
-
-	var combinedStringAfterParsing string = stringsAfterParsing.argNumber1 + "," + stringsAfterParsing.argNumber2
-
-	return combinedStringAfterParsing
-}
 
 func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	var out []byte
@@ -110,8 +77,6 @@ func main() {
 	wg.Add(1)
 	go func() {
 		stdout, errStdout = copyAndCapture(os.Stdout, stdoutIn)
-		log.Println(string(stdout))
-		log.Println("Trying to write it out.")
 		wg.Done()
 	}()
 
