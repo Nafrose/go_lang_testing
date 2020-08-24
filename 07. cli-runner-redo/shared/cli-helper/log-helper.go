@@ -2,6 +2,7 @@ package cliHelper
 
 import (
 	_ "flag"
+	"fmt"
 	_ "fmt"
 	_ "io"
 	_ "io/ioutil"
@@ -12,13 +13,13 @@ import (
 )
 
 func CreateDefaultLogWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {
-	if config.isJsonLog {
+	if processConfigProperties.Config {
 		// write for JSON
-		retun defaultLogJsonWriterConfig(config)
+		return defaultLogJsonWriterConfig(config)
 	}
 
 	// do for non json
-	retun defaultLogWriterConfig(config)
+	return defaultLogWriterConfig(config)
 }
 
 func  defaultLogJsonWriterConfig(processConfigProperties IProcessConfigProperties) IProcessConfig {

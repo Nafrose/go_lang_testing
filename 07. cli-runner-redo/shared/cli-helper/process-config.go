@@ -1,23 +1,13 @@
 package cliHelper
 
 type ProcessConfigProperties struct {
-	title             string
-	description       string
-	parentProcessName string
-	id                string
-	parentId          string
-	globalSessionId   string
-	config            IWritingConfiguration
-}
-
-type IProcessConfigProperties struct {
-	title             string
-	description       string
-	parentProcessName string
-	id                string
-	parentId          string
-	globalSessionId   string
-	config            IWritingConfiguration
+	Title             string
+	Description       string
+	ParentProcessName string
+	Id                string
+	ParentId          string
+	GlobalSessionId   string
+	Config            IWritingConfiguration
 }
 
 type ProcessConfig struct {
@@ -25,7 +15,7 @@ type ProcessConfig struct {
 	properties IProcessConfigProperties
 }
 
-type DefaultJsonInteration struct {
+type DefaultJsonInteraction struct {
 	Attributes struct {
 		Counter int `json:"counter"`
 		Log     struct {
