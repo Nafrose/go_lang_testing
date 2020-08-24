@@ -22,13 +22,16 @@ func CreateDefaultLogWriterConfig(config IWritingConfiguration) IProcessConfig {
 }
 
 func  defaultLogJsonWriterConfig(config IWritingConfiguration) IProcessConfig {
+	fmt.Println("write using JSON log")
 
+	return 
 }
 
 func  defaultLogWriterConfig(config IWritingConfiguration) IProcessConfig {
+	fmt.Println("write using log")
 
 }
 
 func  defaultZapLogWriterConfig(config IWritingConfiguration) IProcessConfig {
-	
+	fmt.Println("write using zap")
 }

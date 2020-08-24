@@ -9,7 +9,6 @@ type IWritersCollection interface{
 	Writers []Writer
 }
 
-
 type IProcessConfig interface {
 	writers           IWritersCollection
 	config            IWritingConfiguration
