@@ -14,20 +14,15 @@ type Writer struct {
 }
 
 type DefaultLogWriter struct {
-
+	IsError bool
 }
 
 func (d DefaultLogWriter) Write(line string) {
 	fmt.Println(line)
 }
 
-func CreateDefaultErrorLogWriter() IWriter {
-	write := func (line string){fmt.Println(line)}
-	return Writer{IsError: true, IWriter: func Write(line string){fmt.Println(line)}}
-}
-
 func main() {
-	var writer Writer = CreateDefaultErrorLogWriter()
+	var writer Writer = Writer{IsError: true, IWriter: DefaultLogWriter{}}
 	writer.Write("me hello")
 	fmt.Println("Hello, playground")
 }

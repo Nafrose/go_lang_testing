@@ -31,21 +31,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../07. cli-runner-redo/.idea/07. cli-runner-redo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/cli-runner/cli-runner.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/07. code-play-ground.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mian.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/cli-runner.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/cli-runner.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/cli-streamer.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/cli-streamer.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/cli-helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/cli-helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/error-log-helper.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/log-helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/log-helper.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/process-config.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/process-config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/writers-interfaces.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/writers.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/writers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mian.go" beforeDir="false" afterPath="$PROJECT_DIR$/mian.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,21 +100,21 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1859" height="254" key="GridCell.Tab.0.bottom" timestamp="1598289545288">
+    <state width="1859" height="254" key="GridCell.Tab.0.bottom" timestamp="1598291267473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598289545288" />
-    <state width="1859" height="254" key="GridCell.Tab.0.center" timestamp="1598289545287">
+    <state width="1859" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598291267473" />
+    <state width="1859" height="254" key="GridCell.Tab.0.center" timestamp="1598291267473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="254" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598289545287" />
-    <state width="1859" height="254" key="GridCell.Tab.0.left" timestamp="1598289545286">
+    <state width="1859" height="254" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598291267473" />
+    <state width="1859" height="254" key="GridCell.Tab.0.left" timestamp="1598291267473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="254" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598289545286" />
-    <state width="1859" height="254" key="GridCell.Tab.0.right" timestamp="1598289545288">
+    <state width="1859" height="254" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598291267473" />
+    <state width="1859" height="254" key="GridCell.Tab.0.right" timestamp="1598291267473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="254" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598289545288" />
+    <state width="1859" height="254" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598291267473" />
   </component>
 </project>
