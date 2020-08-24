@@ -11,16 +11,6 @@ import (
 	_ "sync"
 )
 
-func CreateDefaultLogWriter(config IWritingConfiguration) {
-	if config.isJsonLog {
-		// write for JSON
-		retun
-	}
-
-	// do for non json
-
-}
-
 func CreateDefaultErrorLogWriter(config IWritingConfiguration) {
 
 }

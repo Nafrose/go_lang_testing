@@ -1,7 +1,11 @@
 package cliHelper
 
 type WritingConfiguration struct {
-	isJsonLog            bool
+	isJsonLog bool
+	// if enabled then write to fmt.Fprintf
+	isWriteToHttp bool
+	// https://github.com/uber-go/zap
+	isLogUsingZap        bool
 	isWriteToFile        bool
 	writeToFileDirectory string
 	writeToFilePath      string

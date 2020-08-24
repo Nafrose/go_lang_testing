@@ -9,8 +9,21 @@ type IWritersCollection interface{
 	Writers []Writer
 }
 
+
+type IProcessConfig interface {
+	writers           IWritersCollection
+	config            IWritingConfiguration
+	title             string
+	description       string
+	parentProcessName string
+}
+
 type IWritingConfiguration interface{
 	isJsonLog	bool
+	// if enabled then write to fmt.Fprintf
+	isWriteToHttp bool
+	// https://github.com/uber-go/zap
+	isLogUsingZap bool
 	isWriteToFile bool
 	writeToFileDirectory string
 	writeToFilePath string
