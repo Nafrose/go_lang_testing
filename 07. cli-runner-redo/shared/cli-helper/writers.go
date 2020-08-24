@@ -1,6 +1,7 @@
 package cliHelper
 
 import (
+	"fmt"
 	"log"
 
 	"go.uber.org/zap"
@@ -12,6 +13,18 @@ type IWriter interface {
 
 type Writer struct {
 	IWriter
+}
+
+type DefaultLogWriter struct{}
+
+func (d DefaultLogWriter) Write(line string) {
+	log.Println(line)
+}
+
+type DefaultErrorLogWriter struct{}
+
+func (d DefaultErrorLogWriter) Write(line string) {
+	log.Fatalln("Error: %s", line)
 }
 
 type WritersCollection struct {
@@ -33,25 +46,9 @@ type WritingConfiguration struct {
 
 var zapLogger *Logger = zap.NewExample()
 
-func defaultWriteLog(line string) {
-	log.Println(line)
-}
-
-//func defaultWriteZapLog(line string) {
-//	zapLogger.info(line)
-//}
-
-func CreateDefaultLogWriter() Writer {
-	return Writer{IsError: false, write: defaultWriteLog}
-}
-
-func CreateDefaultErrorLogWriter() Writer {
-	return Writer{IsError: true, write: defaultWriteLog}
-}
-
 func CreateDefaultLogWriters() WritersCollection {
-	outLogWriter := CreateDefaultLogWriter()
-	errorLogWriter := CreateDefaultErrorLogWriter()
+	outLogWriter := Writer{IWriter: DefaultLogWriter{}}
+	errorLogWriter := Writer{IWriter: DefaultErrorLogWriter{}}
 
 	writers := WritersCollection{
 		Writers:      []Writer{outLogWriter},
@@ -68,11 +65,3 @@ func (wrs *WritersCollection) AttachWriter(w Writer) {
 func (wrs *WritersCollection) AttachErrorWriter(w Writer) {
 	wrs.ErrorWriters = append(wrs.ErrorWriters, w)
 }
-
-//func CreateDefaultZapWriter() Writer {
-//	return Writer{IsError: false, write: defaultWriteZapLog}
-//}
-//
-//func CreateDefaultZapErrorWriter() Writer {
-//	return Writer{IsError: true, write: defaultWriteZapLog}
-//}
