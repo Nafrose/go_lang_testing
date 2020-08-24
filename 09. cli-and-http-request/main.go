@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -156,16 +157,12 @@ func getIndividualPersonIndex(s string) int {
 		for i := 0; i < len(persons); i++ {
 			if idToSearchFor == persons[i].Id {
 				index = i
-			} else {
-				index = 0 //negative value avoided for now
 			}
 		}
 	} else {
 		for i := 0; i < len(persons); i++ {
-			if s == persons[i].FirstName {
+			if strings.Contains(strings.ToLower(s), strings.ToLower(persons[i].FirstName)) {
 				index = i
-			} else {
-				index = 0 //negative value avoided for now
 			}
 		}
 	}
@@ -183,13 +180,14 @@ func getAllValuesForProperty(s string) {
 	for i := 0; i < len(persons); i++ {
 		fmt.Println(persons[i].FirstName)
 	}
+
 }
 
 func getAllValuesForMultiProperty(s string) {
 	for i := 0; i < len(persons); i++ {
 		if s == "firstname-and-dateofbirth" {
 			fmt.Printf("First name: %s  \n", persons[i].FirstName)
-			fmt.Printf("Date of birth: %d  \n", persons[i].DateOfBirth)
+			fmt.Printf("Date of birth: %s  \n", persons[i].DateOfBirth)
 		} else if s == "id-and-firstname" {
 			fmt.Printf("Id: %d  \n", persons[i].Id)
 			fmt.Printf("First name: %s  \n", persons[i].FirstName)
@@ -206,17 +204,8 @@ func getDir() string {
 	return dir
 }
 
-// func getRawBodyToCliJson(s string) string {
-// 	var p fastjson.Parser
-// 	v, err := p.Parse(s)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	return v
-// }
-
-func People(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	cmd := exec.Command(getDir()+"/input.exe", "-get", "people")
+func getPeopleReqFromHttp(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	cmd := exec.Command(getDir()+"/main.exe", "-get", "people")
 	outputFromOtherFile, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
@@ -225,45 +214,31 @@ func People(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	fmt.Fprintf(w, "List of all people are - %s \n", outputFromOtherFile)
 }
 func CreatePeople(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "The person has been added %s \n", r.Body)
-	fmt.Printf("%T %v ", r.Body, r.Body)
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(r.Body)
-	fmt.Fprintf(w, "The person has been added %s \n", buf)
-	fmt.Printf("%T %v", buf, buf)
+	cmd := exec.Command(getDir()+"/main.exe", "-run", "create-person-json")
 
-	fmt.Println(buf.String())
-	// fmt.Fprintf(w, "The person to be been added %s \n", string(buf))
-	// cmd := exec.Command(getDir()+"/input.exe", "-run", "create-person-json-http")
-
-	// cmd.Stdout = os.Stdout
-	// cmd.Stderr = os.Stderr
-	// cmd.Stdin = strings.NewReader(buf.String() + "\n")
-	// err := cmd.Run()
-	// if err != nil {
-	// 	log.Fatalf("cmd.Run() failed with %s\n", err)
-	// }
-	login := exec.Command(getDir()+"/input.exe", "-run", "create-person-json-http")
-
-	buffer := bytes.Buffer{}
-	buffer.Write([]byte(`{"Id":1,"FirstName":"Billy","LastName":"Ul Karim","Alias":"alim","DateOfBirth":"2018-09-22T19:42:31+07:00","Profession":"Mentoring","Parent":"null"}\n`))
-	login.Stdin = &buffer
-
-	login.Stdout = os.Stdout
-	login.Stderr = os.Stderr
-
-	err := login.Run()
+	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		log.Fatal(err)
 	}
-	// fmt.Fprintf(w, "The CLI output runs %s \n", string(compiledCliPersonBytes))
+	err = cmd.Start()
+	if err != nil {
+		log.Fatal(err)
+	}
+	time.Sleep(5 * time.Second)
+	go func() {
+		defer stdin.Close()
+		io.WriteString(stdin, buf.String())
+	}()
+	err = cmd.Wait()
 }
 func getPeopleById(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	fmt.Fprintf(w, "The person you are looking for is - %s \n", getIndividualPersonInfo(ps.ByName("Id")))
 }
 
 func getPeopleByFirstName(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "The person you are looking for is - \n", getIndividualPersonInfo(ps.ByName("name")))
+	fmt.Fprintf(w, "The person you are looking for is - %s \n", getIndividualPersonInfo(ps.ByName("firstname")))
 }
 
 func isFlagPassed(name string) bool {
@@ -298,20 +273,6 @@ func main() {
 		appendToPersonsArray(person, peopleArray)
 		appendToFile()
 
-	} else if strings.Compare(methodOfChoice, "create-person-json-http") == 0 {
-		fmt.Printf("method of choice: %s\n", methodOfChoice)
-		jsonInput, _ := GetLine("Enter JSON-from-http")
-		fmt.Println(jsonInput)
-		jsonInputByte := []byte(jsonInput)
-		fmt.Println(jsonInputByte)
-		err := json.Unmarshal(jsonInputByte, &person)
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		appendToPersonsArray(person, peopleArray)
-		appendToFile()
-
 	} else if strings.Compare(methodOfChoice, "create-person-json") == 0 {
 		jsonInput, _ := GetLine("Enter JSON")
 		jsonInputByte := []byte(jsonInput)
@@ -342,11 +303,10 @@ func main() {
 		}
 
 	} else if strings.Compare(additionalArguments[0], "people") == 0 && !isDigit(additionalArguments[1]) && len(additionalArguments) > 2 {
-		// 	findFilterProperty(additionalArguments[1])
 		fmt.Println(getIndividualPersonInfo(additionalArguments[2]))
 
-	} else if strings.Compare(additionalArguments[0], "people-plain") == 0 && strings.Compare(additionalArguments[1], "firstname") == 0 && len(additionalArguments) > 2 {
-		getAllValuesForProperty(additionalArguments[2])
+	} else if strings.Compare(additionalArguments[0], "people-plain") == 0 && strings.Compare(additionalArguments[1], "firstname") == 0 && len(additionalArguments) < 3 {
+		getAllValuesForProperty(additionalArguments[1])
 
 	} else if strings.Compare(additionalArguments[0], "people-plain") == 0 && strings.Compare(additionalArguments[1], "firstname-and-dateofbirth") == 0 {
 		getAllValuesForMultiProperty(additionalArguments[1])
@@ -356,7 +316,7 @@ func main() {
 
 	}
 
-	if strings.Compare(throwError, "") != 0 {
+	if strings.Compare(throwError, "message") != 0 {
 		fmt.Println(throwError)
 	}
 
@@ -364,10 +324,10 @@ func main() {
 
 	if len(os.Args) < 2 {
 		router := httprouter.New()
-		router.GET("/people", People)
+		router.GET("/people", getPeopleReqFromHttp)
 		router.POST("/people/create", CreatePeople)
 		router.GET("/people/:Id", getPeopleById)
-		router.GET("/firstname/:name", getPeopleByFirstName)
+		router.GET("/firstname/:firstname", getPeopleByFirstName)
 
 		log.Fatal(http.ListenAndServe(":8080", router))
 	}
