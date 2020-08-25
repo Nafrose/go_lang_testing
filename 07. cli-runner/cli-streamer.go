@@ -39,8 +39,9 @@ func streamingMultipleTimes(arg []arguments) {
 	for j := 0; j < 2; j++ {
 		for i := 0; i < arg[j].runTimes; i++ {
 			fmt.Printf("Running process %v %s %v -> %s \n", j+1, arg[j].title, i+1, arg[j].msg1)
-			time.Sleep(time.Duration(arg[j].delay) * time.Second)
 			fmt.Printf("Running process %v %s %v -> %s \n", j+1, arg[j].title, i+1, arg[j].msg2)
+
+			time.Sleep(time.Duration(arg[j].delay) * time.Second)
 		}
 
 		fmt.Printf("\n")
