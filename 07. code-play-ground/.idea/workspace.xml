@@ -30,11 +30,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/design-patterns/open-close/003. open-close.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/design-patterns/single-responsibility/01. single-responsibility.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/cli-runner/cli-runner.go" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/shared/cli-helper/cli-runner/cli-runner.go" afterDir="false" />
+    <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="Code changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design-patterns/open-close/003. open-close.go" beforeDir="false" afterPath="$PROJECT_DIR$/design-patterns/open-close/003. open-close.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +61,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -104,6 +103,14 @@
       <option name="presentableId" value="Default" />
       <updated>1598289145323</updated>
     </task>
+    <task id="LOCAL-00001" summary="Code changes">
+      <created>1598353657023</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598353657023</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,27 +128,31 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Code changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code changes" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="663" y="336" key="#Go_Linter" timestamp="1598351064650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="663" y="336" key="#Go_Linter/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351064650" />
-    <state width="1859" height="252" key="GridCell.Tab.0.bottom" timestamp="1598351076388">
+    <state width="1859" height="252" key="GridCell.Tab.0.bottom" timestamp="1598353754190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351076388" />
-    <state width="1859" height="252" key="GridCell.Tab.0.center" timestamp="1598351076388">
+    <state width="1859" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598353754190" />
+    <state width="1859" height="252" key="GridCell.Tab.0.center" timestamp="1598353754190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351076388" />
-    <state width="1859" height="252" key="GridCell.Tab.0.left" timestamp="1598351076388">
+    <state width="1859" height="252" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598353754190" />
+    <state width="1859" height="252" key="GridCell.Tab.0.left" timestamp="1598353754190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351076388" />
-    <state width="1859" height="252" key="GridCell.Tab.0.right" timestamp="1598351076388">
+    <state width="1859" height="252" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598353754190" />
+    <state width="1859" height="252" key="GridCell.Tab.0.right" timestamp="1598353754190">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351076388" />
+    <state width="1859" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598353754190" />
     <state x="241" y="0" key="SettingsEditor" timestamp="1598353126623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
