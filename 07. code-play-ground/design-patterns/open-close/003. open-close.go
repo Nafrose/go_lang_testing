@@ -93,11 +93,17 @@ func (spec SizeSpecification) IsSatisfied(p *Product) bool {
 
 type AndSpecification struct {
 	first, second Specification
+	another       *AndSpecification
 }
 
 func (spec AndSpecification) IsSatisfied(p *Product) bool {
+	anotherSpecTrue := spec.another == nil ||
+		(spec.another != nil &&
+			spec.another.IsSatisfied(p))
+
 	return spec.first.IsSatisfied(p) &&
-		spec.second.IsSatisfied(p)
+		spec.second.IsSatisfied(p) &&
+		anotherSpecTrue
 }
 
 type BetterFilter struct{}
@@ -130,16 +136,23 @@ func main() {
 	// vvv AFTER
 	fmt.Print("Green products (new):\n")
 	greenSpec := ColorSpecification{green}
+	redSpec := ColorSpecification{red}
 	bf := BetterFilter{}
 	for _, v := range bf.Filter(products, greenSpec) {
 		fmt.Printf(" - %s is green\n", v.name)
 	}
 
 	largeSpec := SizeSpecification{large}
-
-	largeGreenSpec := AndSpecification{largeSpec, greenSpec}
+	largeGreenSpec := AndSpecification{largeSpec, greenSpec, nil}
 	fmt.Print("Large blue items:\n")
 	for _, v := range bf.Filter(products, largeGreenSpec) {
+		fmt.Printf(" - %s is large and red\n", v.name)
+	}
+	largeGreenSpec2 := AndSpecification{largeSpec, redSpec, nil}
+	largeGreenSpec3 := AndSpecification{largeSpec, greenSpec, &largeGreenSpec2}
+
+	fmt.Print("Large blue items:\n")
+	for _, v := range bf.Filter(products, largeGreenSpec3) {
 		fmt.Printf(" - %s is large and green\n", v.name)
 	}
 }
