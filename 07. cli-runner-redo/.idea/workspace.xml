@@ -31,8 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="207f893d-73dc-4e72-a5fe-35a52c915090" name="Default Changelist" comment="refactor the code for interfaces">
-      <change afterPath="$PROJECT_DIR$/../07. code-play-ground/design-patterns/dependency-inversion/run.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../07. code-play-ground/design-patterns/interface-seg/01. run.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../07. code-play-ground/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../07. code-play-ground/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

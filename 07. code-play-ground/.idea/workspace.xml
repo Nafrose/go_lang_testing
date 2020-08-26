@@ -30,9 +30,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="Add open close complete code, updated">
-      <change afterPath="$PROJECT_DIR$/design-patterns/dependency-inversion/run.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/design-patterns/interface-seg/01. run.go" afterDir="false" />
+    <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="Add new principals">
+      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598354585977</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add new principals">
+      <created>1598358909938</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1598358909938</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,29 +153,30 @@
     <MESSAGE value="Code changes" />
     <MESSAGE value="Add open close complete code" />
     <MESSAGE value="Add open close complete code, updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add open close complete code, updated" />
+    <MESSAGE value="Add new principals" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new principals" />
   </component>
   <component name="WindowStateProjectService">
     <state x="663" y="336" key="#Go_Linter" timestamp="1598351064650">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="663" y="336" key="#Go_Linter/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351064650" />
-    <state width="1859" height="252" key="GridCell.Tab.0.bottom" timestamp="1598358623087">
+    <state width="1859" height="252" key="GridCell.Tab.0.bottom" timestamp="1598361684866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598358623087" />
-    <state width="1859" height="252" key="GridCell.Tab.0.center" timestamp="1598358623084">
+    <state width="1859" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598361684866" />
+    <state width="1859" height="252" key="GridCell.Tab.0.center" timestamp="1598361684863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598358623084" />
-    <state width="1859" height="252" key="GridCell.Tab.0.left" timestamp="1598358623084">
+    <state width="1859" height="252" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598361684863" />
+    <state width="1859" height="252" key="GridCell.Tab.0.left" timestamp="1598361684862">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598358623084" />
-    <state width="1859" height="252" key="GridCell.Tab.0.right" timestamp="1598358623087">
+    <state width="1859" height="252" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598361684862" />
+    <state width="1859" height="252" key="GridCell.Tab.0.right" timestamp="1598361684865">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1859" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598358623087" />
+    <state width="1859" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598361684865" />
     <state x="241" y="0" key="SettingsEditor" timestamp="1598353126623">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
