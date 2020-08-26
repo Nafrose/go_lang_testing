@@ -1,4 +1,4 @@
-package composite
+package main
 
 type NeuronInterface interface {
 	Iter() []*Neuron

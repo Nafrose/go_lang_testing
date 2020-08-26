@@ -31,7 +31,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4522629-ee4d-4520-8ea2-0ded42780925" name="Default Changelist" comment="Add new principals">
-      <change beforePath="$PROJECT_DIR$/../07. cli-runner-redo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../07. cli-runner-redo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +67,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunManager" selected="Go Build.go build 003. open-close.go">
     <configuration name="go build 003. open-close.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -157,10 +156,21 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add new principals" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="663" y="336" key="#Go_Linter" timestamp="1598351064650">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2583" y="67" width="593" height="899" key="#Go_Linter" timestamp="1598425179777">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="663" y="336" key="#Go_Linter/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598351064650" />
+    <state x="2583" y="67" key="#Go_Linter/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598425179777" />
+    <state x="663" y="67" width="593" height="899" key="#Go_Linter/0.0.1920.1040@0.0.1920.1040" timestamp="1598424072871" />
+    <state x="606" y="284" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1598436455419">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2526" y="284" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598428991435" />
+    <state x="606" y="284" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598436455419" />
+    <state x="634" y="138" key="FileChooserDialogImpl" timestamp="1598421945729">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="634" y="138" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598421945729" />
     <state width="1859" height="252" key="GridCell.Tab.0.bottom" timestamp="1598361684866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -177,24 +187,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1859" height="252" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598361684865" />
-    <state x="241" y="0" key="SettingsEditor" timestamp="1598353126623">
+    <state x="482" y="0" width="1366" height="1040" key="SettingsEditor" timestamp="1598436442842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="241" y="0" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598353126623" />
+    <state x="2384" y="0" width="1366" height="1040" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598426654601" />
+    <state x="482" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598436442842" />
     <state x="453" y="-2" key="search.everywhere.popup" timestamp="1598358592446">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="453" y="-2" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598358592446" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/mian.go</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
