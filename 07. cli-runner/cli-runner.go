@@ -79,11 +79,9 @@ func writeToFile(s string) {
 			if err != nil {
 				panic(err)
 			}
-
 		}
 		mutex.Unlock()
 	}
-
 }
 
 func main() {
