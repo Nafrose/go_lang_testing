@@ -1,4 +1,4 @@
-package clihelper
+package main
 
 import "time"
 
