@@ -6,7 +6,9 @@ import (
 	"sync"
 )
 
-type CmdRunner struct{}
+type CmdRunner struct{
+	CliBindingProperties CliBindingProperties	
+}
 
 type Writer interface {
 	Writer(wc WriterConfiguration, line string)
@@ -17,15 +19,17 @@ type stdInParameter struct {
 	stderrIn error
 }
 
-func RunAsync(c CliBindingProperties) {
+func RunAsync(c CliBindingProperties) stdInParameter{
 	var stdout, stderr []byte
+	var stdInParameter stdInParameter
 	var errStdout, errStderr error
-	stdoutIn, _ := c.Cmd.StdoutPipe()
-	stderrIn, _ := c.Cmd.StderrPipe()
+	stdInParameter.stdoutIn, _ = c.Cmd.StdoutPipe()
+	stdInParameter.stderrIn, _ = c.Cmd.StderrPipe()
 	err := c.Cmd.Start()
 	if err != nil {
 		log.Fatalf("cmd.Start() failed with '%s'\n", err)
 	}
+	return stdInParameter
 }
 
 func CliBind(c CliBindingProperties, s stdInParameter) {
