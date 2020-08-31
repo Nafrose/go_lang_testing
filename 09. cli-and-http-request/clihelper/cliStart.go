@@ -6,8 +6,8 @@ import (
 	"sync"
 )
 
-type CmdRunner struct{
-	CliBindingProperties CliBindingProperties	
+type CmdRunner struct {
+	CliBindingProperties CliBindingProperties
 }
 
 type Writer interface {
@@ -15,11 +15,11 @@ type Writer interface {
 }
 
 type stdInParameter struct {
-	stdoutIn ???
+	stdoutIn []byte
 	stderrIn error
 }
 
-func RunAsync(c CliBindingProperties) stdInParameter{
+func RunAsync(c CliBindingProperties) stdInParameter {
 	var stdout, stderr []byte
 	var stdInParameter stdInParameter
 	var errStdout, errStderr error
