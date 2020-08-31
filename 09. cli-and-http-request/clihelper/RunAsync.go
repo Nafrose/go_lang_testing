@@ -2,12 +2,12 @@ package clihelper
 
 import "log"
 
-func RunAsync(c CliBindingProperties) stdInParameter {
+func RunAsync(c CliBindingProperties) StdInParameter {
 	var stdout, stderr []byte
-	var stdInParameter stdInParameter
+	var stdInParameter StdInParameter
 	var errStdout, errStderr error
-	stdInParameter.stdoutIn, _ = c.Cmd.StdoutPipe()
-	stdInParameter.stderrIn, _ = c.Cmd.StderrPipe()
+
+	stdInParameter := NewStdInParameters(c.Cmd)
 	err := c.Cmd.Start()
 	if err != nil {
 		log.Fatalf("cmd.Start() failed with '%s'\n", err)
