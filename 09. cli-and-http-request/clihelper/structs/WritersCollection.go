@@ -7,5 +7,5 @@ import (
 type WritersCollection struct {
 	OutputLoggers       []Writer
 	ErrorOutputLoggers  []Writer
-	WriterConfiguration WriterConfiguration
+	WriterConfiguration *WriterConfiguration
 }
