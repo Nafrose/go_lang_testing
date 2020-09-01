@@ -20,9 +20,7 @@ type PersonType struct {
 
 var persons = make([]PersonType, 0, 10)
 var peopleArray = make([]PersonType, 0, 10)
-
 type cmdrunner struct{}
-
 type CliBinderProperties struct {
 	writersCollection []WriterCollection
 	// CmdRunningInfo    cmdRunningInfo

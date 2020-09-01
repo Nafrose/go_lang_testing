@@ -34,3 +34,79 @@ create 5 person using the same struct. Use cli command to take input from user a
   localhost:8080/people/5 Http-GET : will get a person as JSON with id : 5.
   
   localhost:8080/firstName/alim Http-GET : will get a person as JSON with first name contains alim.
+
+
+## Steps to perform for enhancements
+
+CliBindingPropertiesBuilder.
+  OutputLoggers().Add(outputLogger).
+  ErrorLoggers().Add(errorLogger).
+  CmdRunningConfig().Add(config)
+  
+
+writerConfig := WritersConfiguration.
+  OutputLogger().Add(...).
+  ErrorOutputLogger().Add(...).
+  SetConfig(WriterConfiguration{IsJson...}).
+  Build()
+
+cliBindingProperties := CliBindingPropertiesBuilder.
+  SetWriterConfig(writerConfig).
+  SetExecutor(cmd)  
+
+clirunner.RunAsync(cliBindingProperties)
+	-> 
+	var stdout, stderr []byte
+	var errStdout, errStderr error
+	stdoutIn, _ := cmd.StdoutPipe()
+	stderrIn, _ := cmd.StderrPipe()
+	err := cmd.Start()
+	if err != nil {
+		log.Fatalf("cmd.Start() failed with '%s'\n", err)
+	}
+	-> stdoutIn, stderrIn -> stdInParameter(output, error)
+	-> delegation (..) -> CliBind(cliBindingProperties, stdInParameter)
+           -> CliBind(..) execute lines 107-116
+               -> Line 110 stdout, errStdout = attachLoggers(cliBindingProperties, stdInParameter)
+                    -> attachLoggers(....)
+                           -> 
+	attachLoggers(cliBindingProperties, r stdInParameter) 
+						
+	var out []byte
+	buf := make([]byte, 1, cliBindingProperties.Config.BufferSize)
+	for {
+		n, err := r.StdOutIn.Read(buf[:])
+		if n > 0 {
+			d := buf[:n]
+			out = append(out, d...)
+			WriteUsingOutputLoggers(&cliBindingProperties, d) //
+		}
+		if err != nil {
+			// Read returns io.EOF at the end of file, which is not an error for us
+			if err == io.EOF {
+				err = nil
+			}
+			return out, err
+		}
+	}
+
+	attachErrorLoggers(cliBindingProperties, r stdInParameter) 
+						
+	var out []byte
+	buf := make([]byte, 1, cliBindingProperties.Config.BufferSize)
+	for {
+		n, err := r.StdOutErrorIn.Read(buf[:])
+		if n > 0 {
+			d := buf[:n]
+			out = append(out, d...)
+			WriteUsingErrorLoggers(&cliBindingProperties, d) //
+		}
+		if err != nil {
+			// Read returns io.EOF at the end of file, which is not an error for us
+			if err == io.EOF {
+				err = nil
+			}
+			return out, err
+		}
+	}
+

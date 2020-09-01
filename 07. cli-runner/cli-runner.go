@@ -47,7 +47,7 @@ func parseString(s *string) string {
 
 func copyAndCapture(w io.Writer, r io.Reader) ([]byte, error) {
 	var out []byte
-	buf := make([]byte, 1024, 1024)
+	buf := make([]byte, 1, 1024)
 	for {
 		n, err := r.Read(buf[:])
 		if n > 0 {
