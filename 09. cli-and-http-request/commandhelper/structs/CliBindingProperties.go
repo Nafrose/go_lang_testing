@@ -1,4 +1,4 @@
-package clihelper
+package commandhelperstructs
 
 import (
 	. "os/exec"

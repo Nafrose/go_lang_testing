@@ -1,4 +1,4 @@
-package builders
+package commandhelperbuilders
 
 import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 

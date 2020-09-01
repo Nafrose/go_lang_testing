@@ -1,4 +1,4 @@
-package builders
+package commandhelperbuilders
 
 import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
@@ -8,6 +8,10 @@ type WritersCollectionBuilder struct {
 
 func (wcb *WritersCollectionBuilder) OutputLogger() *OutputLoggerBuilder {
 	return &OutputLoggerBuilder{WritersCollectionBuilder: wcb}
+}
+
+func (wcb *WritersCollectionBuilder) LogWriter() *LogWriterBuilder {
+	return &LogWriterBuilder{WritersCollectionBuilder: wcb}
 }
 
 func (wcb *WritersCollectionBuilder) ErrorOutputLogger() *ErrorLoggerBuilder {

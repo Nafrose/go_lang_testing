@@ -1,4 +1,4 @@
-package clihelper
+package commandhelperstructs
 
 type WriterConfiguration struct {
 	IsJsonLoggingEnabled bool

@@ -1,4 +1,4 @@
-package clihelper
+package commandhelperstructs
 
 type CmdRunningInfo struct {
 	Title, Description                  string

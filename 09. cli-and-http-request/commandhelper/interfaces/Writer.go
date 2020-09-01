@@ -1,4 +1,4 @@
-package clihelper
+package commandhelperinterfaces
 
 import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
