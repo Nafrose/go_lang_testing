@@ -13,7 +13,7 @@ func (elb *ErrorLoggerBuilder) Add(w *clihelper.Writer) *ErrorLoggerBuilder {
 	return elb
 }
 
-func (elb *ErrorLoggerBuilder) AddMany(writers []*clihelper.Writer) *ErrorLoggerBuilder {
+func (elb *ErrorLoggerBuilder) AddMany(writers ...*clihelper.Writer) *ErrorLoggerBuilder {
 	for _, writer := range writers {
 		elb.Add(writer)
 	}

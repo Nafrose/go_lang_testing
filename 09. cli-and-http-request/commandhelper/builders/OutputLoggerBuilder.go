@@ -13,7 +13,7 @@ func (olb *OutputLoggerBuilder) Add(w *clihelper.Writer) *OutputLoggerBuilder {
 	return olb
 }
 
-func (olb *OutputLoggerBuilder) AddMany(writers []*clihelper.Writer) *OutputLoggerBuilder {
+func (olb *OutputLoggerBuilder) AddMany(writers ...*clihelper.Writer) *OutputLoggerBuilder {
 	for _, writer := range writers {
 		olb.Add(writer)
 	}
