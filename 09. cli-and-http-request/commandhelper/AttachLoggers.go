@@ -5,26 +5,26 @@ import (
 	"io"
 )
 
-type LogWrite func(cliBindingProperties *CliBindingProperties, line string)
+type logWrite func(cliBindingProperties *CliBindingProperties, line string)
 
-func AttachLoggers(
+func attachCliBindingPropertiesLoggers(
 	cliBindingProperties *CliBindingProperties,
 	stdInParameter *StdInParameter) {
 	if cliBindingProperties.CmdRunningInfo.IsAsync {
-		go attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, WriteUsingOutputLoggers)
-		go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, WriteUsingErrorLoggers)
+		go attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, writeUsingOutputLoggers)
+		go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, writeUsingErrorLoggers)
 
 		return
 	}
 
-	go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, WriteUsingErrorLoggers)
-	attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, WriteUsingOutputLoggers)
+	go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, writeUsingErrorLoggers)
+	attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, writeUsingOutputLoggers)
 }
 
 func attachInternalLoggers(
 	cliBindingProperties *CliBindingProperties,
 	readCloser *io.ReadCloser,
-	logWrite LogWrite) ([]byte, error) {
+	logWrite logWrite) ([]byte, error) {
 	var out []byte
 	buff := make([]byte, 1, cliBindingProperties.CmdRunningInfo.BufferSize)
 	n, err := (*readCloser).Read(buff[:])

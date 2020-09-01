@@ -3,11 +3,7 @@ package builders
 import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
 type WritersCollectionBuilder struct {
-	WritersCollection *WritersCollection
-}
-
-func NewWritersCollectionBuilder() *WritersCollectionBuilder {
-	return &WritersCollectionBuilder{&WritersCollection{}}
+	*WritersCollection
 }
 
 func (wcb *WritersCollectionBuilder) OutputLogger() *OutputLoggerBuilder {

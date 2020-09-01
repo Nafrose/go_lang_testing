@@ -2,9 +2,9 @@ package commandhelper
 
 import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
-func WriteUsingErrorLoggers(
+func writeUsingErrorLoggers(
 	cliBindingProperties *CliBindingProperties,
 	line string) {
 	writers := cliBindingProperties.WritersCollection.ErrorOutputLoggers
-	WritUsingLoggers(cliBindingProperties, writers, line)
+	writUsingLoggers(cliBindingProperties, writers, line)
 }

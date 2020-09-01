@@ -5,7 +5,7 @@ import (
 	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 )
 
-func WritUsingLoggers(
+func writUsingLoggers(
 	cliBindingProperties *CliBindingProperties,
 	writers []*Writer,
 	line string) {

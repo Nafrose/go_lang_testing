@@ -6,10 +6,6 @@ type CliBindingPropertiesBuilder struct {
 	CliBindingProperties *CliBindingProperties
 }
 
-func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
-	return &CliBindingPropertiesBuilder{&CliBindingProperties{}}
-}
-
 func (
 	cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetWriterCollection(
 	writersCollection *WritersCollection) *CliBindingPropertiesBuilder {
