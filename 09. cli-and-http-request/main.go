@@ -2,22 +2,34 @@ package main
 
 import (
 	cmdhelper "github.com/nafrose/exploring/clirunner/commandhelper"
+	commandhelper "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	commandloggers "github.com/nafrose/exploring/clirunner/commandlogger/default-loggers"
+	"os/exec"
 )
 
 func runCli() {
 	writersCollection := NewWritersCollection()
+	cliBindingProperties := GetCliBindingProperties(writersCollection)
+	cmdhelper.RunAsync(cliBindingProperties)
+}
+
+func GetCliBindingProperties(
+	writersCollection *commandhelper.WritersCollection) *commandhelper.CliBindingProperties {
+	cmd := exec.Cmd{
+		Path: "",
+		Args: nil,
+	}
 
 	cliBindingProperties := cmdhelper.
 		NewCliBindingPropertiesBuilder().
 		SetWriterCollection(writersCollection).
-		SetExecutor()
-	Build()
+		SetExecutor(&cmd).
+		Build()
 
-	cmdhelper.RunAsync(cliBindingProperties)
+	return cliBindingProperties
 }
 
-func NewWritersCollection() *WritersCollection {
+func NewWritersCollection() *commandhelper.WritersCollection {
 	defaultLogger := commandloggers.NewDefaultLogWriter()
 	writersCollection := cmdhelper.NewWritersCollectionBuilder().
 		LogWriter().
