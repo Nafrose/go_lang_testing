@@ -5,19 +5,26 @@ import (
 	"io"
 )
 
+type LogWrite func(cliBindingProperties CliBindingProperties, line string)
+
 func AttachLoggers(
 	cliBindingProperties CliBindingProperties,
-	stdInParameter StdInParameter) ([]byte, error) {
-	attachInternalLoggers(
-		cliBindingProperties,
-		stdInParameter.StdoutIn,
-	)
+	stdInParameter StdInParameter) {
+	if cliBindingProperties.CmdRunningInfo.IsAsync {
+		go attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, WriteUsingOutputLoggers)
+		go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, WriteUsingErrorLoggers)
+
+		return
+	}
+
+	go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, WriteUsingErrorLoggers)
+	attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, WriteUsingOutputLoggers)
 }
 
 func attachInternalLoggers(
 	cliBindingProperties CliBindingProperties,
 	readCloser io.ReadCloser,
-	logger WriteUsingLogger) ([]byte, error) {
+	logWrite LogWrite) ([]byte, error) {
 	var out []byte
 	buff := make([]byte, 1, cliBindingProperties.CmdRunningInfo.BufferSize)
 	n, err := readCloser.Read(buff[:])
@@ -25,7 +32,7 @@ func attachInternalLoggers(
 		bufferedSplits := buff[:n]
 		out = append(out, bufferedSplits...)
 		line := string(bufferedSplits)
-		logger.WriteUsingTheLogger(cliBindingProperties, line)
+		logWrite(cliBindingProperties, line)
 	}
 	if err != nil {
 		// Read returns io.EOF at the end of file, which is not an error for us

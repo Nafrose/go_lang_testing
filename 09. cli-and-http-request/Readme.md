@@ -110,6 +110,13 @@ clirunner.RunAsync(cliBindingProperties)
 		}
 	}
 	
+	
+## Links
+
+- [Implement interface in GO](https://bit.ly/31M3VYd)
+- [go - Can functions be passed as parameters? - Stack Overflow](https://stackoverflow.com/questions/12655464/can-functions-be-passed-as-parameters)
+- [Pass function as an argument to another function in Go (Golang) – Welcome To Golang By Example](https://golangbyexample.com/func-as-func-argument-go/)
+
 ## Module Initialize
 
 ```bash
