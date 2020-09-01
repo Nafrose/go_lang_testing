@@ -5,7 +5,6 @@ import (
 )
 
 type WritersCollection struct {
-	OutputLoggers       []*Writer
-	ErrorOutputLoggers  []*Writer
+	LogWriters          []*LogWriter
 	WriterConfiguration *WriterConfiguration
 }

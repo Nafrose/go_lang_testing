@@ -10,8 +10,7 @@ type LogWriterBuilder struct {
 }
 
 func (lwb *LogWriterBuilder) Add(logWriter *LogWriter) *LogWriterBuilder {
-	lwb.OutputLogger().Add((*logWriter).OutputWriter())
-	lwb.ErrorOutputLogger().Add((*logWriter).ErrorWriter())
+	lwb.WritersCollection.LogWriters = append(lwb.WritersCollection.LogWriters, logWriter)
 
 	return lwb
 }

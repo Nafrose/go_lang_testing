@@ -6,16 +6,8 @@ type WritersCollectionBuilder struct {
 	*WritersCollection
 }
 
-func (wcb *WritersCollectionBuilder) OutputLogger() *OutputLoggerBuilder {
-	return &OutputLoggerBuilder{WritersCollectionBuilder: wcb}
-}
-
 func (wcb *WritersCollectionBuilder) LogWriter() *LogWriterBuilder {
 	return &LogWriterBuilder{WritersCollectionBuilder: wcb}
-}
-
-func (wcb *WritersCollectionBuilder) ErrorOutputLogger() *ErrorLoggerBuilder {
-	return &ErrorLoggerBuilder{WritersCollectionBuilder: wcb}
 }
 
 func (wcb *WritersCollectionBuilder) SetConfig(writerConfig *WriterConfiguration) *WritersCollectionBuilder {
