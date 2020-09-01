@@ -1,7 +1,7 @@
-package clihelper
+package commandhelper
 
 import (
-	. "github.com/nafrose/exploring/clirunner/clihelper/structs"
+	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	"io"
 )
 

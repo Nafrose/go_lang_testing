@@ -1,6 +1,6 @@
 package builders
 
-import . "github.com/nafrose/exploring/clirunner/clihelper/structs"
+import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
 type WritersCollectionBuilder struct {
 	WritersCollection *WritersCollection

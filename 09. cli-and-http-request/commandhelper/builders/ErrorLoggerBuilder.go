@@ -1,6 +1,6 @@
 package builders
 
-import "github.com/nafrose/exploring/clirunner/clihelper/interfaces"
+import "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
 
 type ErrorLoggerBuilder struct {
 	*WritersCollectionBuilder
