@@ -1,5 +1,5 @@
 package clihelper
 
 type Add interface {
-	Add(array []Writer)
+	Add(writer Writer)
 }

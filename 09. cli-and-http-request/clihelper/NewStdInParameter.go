@@ -1,7 +1,7 @@
 package clihelper
 
 func NewStdInParameters(cmd *Cmd) *StdInParameter {
-	StdInParameter.stdoutIn, _ = cmd.StdoutPipe()
-	StdInParameter.stderrIn, _ = cmd.StderrPipe()
-	return *StdInParameter
+	outIn, _ = cmd.StdoutPipe()
+	errIn, _ = cmd.StderrPipe()
+	return *StdInParameter{outIn, errIn}
 }
