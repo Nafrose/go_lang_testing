@@ -6,6 +6,26 @@ type CliBindingPropertiesBuilder struct {
 	cliBindingProperties *CliBindingProperties
 }
 
+func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
+	return &CliBindingPropertiesBuilder{&CliBindingProperties{}}
+}
+
+func (cli *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
+	return cli.cliBindingProperties
+}
+
+func (cli *CliBindingPropertiesBuilder) WritersCollectionBuild() *WritersCollectionBuilder {
+	return &WritersCollectionBuilder{*it}
+}
+
+func (cli *CliBindingPropertiesBuilder) CmdRunningInfoBuild() *CmdRunningInfoBuilder {
+	return &CmdRunningInfoBuilder{*it}
+}
+
+func (cli *CliBindingPropertiesBuilder) CmdBuild() *CmdBuilder {
+	return &CmdBuilder{*it}
+}
+
 type LoggerBuilder struct {
 }
 
