@@ -11,15 +11,15 @@ import (
 	"strings"
 	"sync"
 )
-
-type firstStepArgs struct {
-	argNumber1, argNumber2 string
-}
-
-type arguments struct {
-	runProcess                         int
-	title, msg1, msg2, delay, runTimes string
-}
+//
+//type firstStepArgs struct {
+//	argNumber1, argNumber2 string
+//}
+//
+//type arguments struct {
+//	runProcess                         int
+//	title, msg1, msg2, delay, runTimes string
+//}
 
 func parseString(s *string) string {
 	separator := "\\n"

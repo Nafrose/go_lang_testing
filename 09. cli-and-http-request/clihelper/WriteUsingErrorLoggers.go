@@ -1,6 +1,6 @@
 package clihelper
 
-import . "github.com/nafrose/exploring/clirunner/clihelper/Structs"
+import . "github.com/nafrose/exploring/clirunner/clihelper/structs"
 
 func WriteUsingErrorLoggers(
 	cliBindingProperties CliBindingProperties,

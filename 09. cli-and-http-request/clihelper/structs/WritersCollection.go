@@ -1,6 +1,6 @@
 package clihelper
 
-import . "github.com/nafrose/exploring/clirunner/clihelper/Interfaces"
+import . "github.com/nafrose/exploring/clirunner/clihelper/interfaces"
 
 type WritersCollection struct {
 	OutputLoggers       []Writer

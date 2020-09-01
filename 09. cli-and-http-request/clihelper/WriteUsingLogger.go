@@ -1,8 +1,8 @@
 package clihelper
 
 import (
-	. "github.com/nafrose/exploring/clirunner/clihelper/Interfaces"
-	. "github.com/nafrose/exploring/clirunner/clihelper/Structs"
+	. "github.com/nafrose/exploring/clirunner/clihelper/interfaces"
+	. "github.com/nafrose/exploring/clirunner/clihelper/structs"
 )
 
 func WritUsingLoggers(
