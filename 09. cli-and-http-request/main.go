@@ -1,7 +1,5 @@
 package main
 
-import cmdhelper "github.com/nafrose/exploring/clirunner/commandhelper"
-
 func main() {
 	//writersCollection := cmdhelper.WritersCollection.
 	//	OutputLogger().Add(...). -> OutputLoggerBuilder
@@ -9,5 +7,5 @@ func main() {
 	//SetConfig(WriterConfiguration{IsJson...}).
 	//	Build()
 
-	cmdhelper.NewWritersCollectionBuilder().OutputLogger().Add()
+	//cmdhelper.NewWritersCollectionBuilder().OutputLogger().Add()
 }
