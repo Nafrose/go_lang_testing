@@ -6,10 +6,10 @@ import (
 )
 
 func WritUsingLoggers(
+	cliBindingProperties CliBindingProperties,
 	writers []Writer,
-	wc WriterConfiguration,
 	line string) {
 	for _, writer := range writers {
-		writer.Writer(wc, line)
+		writer.Writer(cliBindingProperties, line)
 	}
 }

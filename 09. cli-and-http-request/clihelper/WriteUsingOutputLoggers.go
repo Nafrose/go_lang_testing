@@ -6,6 +6,5 @@ func WriteUsingOutputLoggers(
 	cliBindingProperties CliBindingProperties,
 	line string) {
 	writers := cliBindingProperties.WritersCollection.OutputLoggers
-	wc := cliBindingProperties.WritersCollection.WriterConfiguration
-	WritUsingLoggers(writers, wc, line)
+	WritUsingLoggers(cliBindingProperties, writers, line)
 }
