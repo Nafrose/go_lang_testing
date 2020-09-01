@@ -1,9 +1,11 @@
 package clihelper
 
-func WriteUsingErrortLoggers(cliBindingProperties CliBindingProperties, line string) {
-	if err != nil {
-		for _, errorLogger = cliBindingProperties.WritersCollection.ErrorLoggers {
-			errorLogger.Writer(cliBindingProperties.WritersCollection.WriterConfiguration, line)
-		return out, err
-	}
+import . "github.com/nafrose/exploring/clirunner/clihelper/Structs"
+
+func WriteUsingErrorLoggers(
+	cliBindingProperties CliBindingProperties,
+	line string) {
+	writers := cliBindingProperties.WritersCollection.ErrorOutputLoggers
+	wc := cliBindingProperties.WritersCollection.WriterConfiguration
+	WritUsingLoggers(writers, wc, line)
 }

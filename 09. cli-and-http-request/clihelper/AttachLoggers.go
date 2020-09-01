@@ -1,16 +1,31 @@
 package clihelper
 
-import "io"
+import (
+	. "github.com/nafrose/exploring/clirunner/clihelper/Structs"
+	"io"
+)
 
-func AttachLoggers(c CliBindingProperties, r StdInParameter) ([]byte, error) {
+func AttachLoggers(
+	cliBindingProperties CliBindingProperties,
+	stdInParameter StdInParameter) ([]byte, error) {
+	attachInternalLoggers(
+		cliBindingProperties,
+		stdInParameter.StdoutIn,
+	)
+}
+
+func attachInternalLoggers(
+	cliBindingProperties CliBindingProperties,
+	readCloser io.ReadCloser,
+	logger WriteUsingLogger) ([]byte, error) {
 	var out []byte
-	buff := make([]byte, 1, c.CmdRunningInfo.BufferSize)
-
-	n, err := r.stdoutIn.Read(buff[:])
+	buff := make([]byte, 1, cliBindingProperties.CmdRunningInfo.BufferSize)
+	n, err := readCloser.Read(buff[:])
 	if n > 0 {
-		d := buff[:n]
-		out = append(out, d...)
-		WriteUsingOutputLoggers(&cliBinderProperties, d)
+		bufferedSplits := buff[:n]
+		out = append(out, bufferedSplits...)
+		line := string(bufferedSplits)
+		logger.WriteUsingTheLogger(cliBindingProperties, line)
 	}
 	if err != nil {
 		// Read returns io.EOF at the end of file, which is not an error for us
@@ -19,4 +34,6 @@ func AttachLoggers(c CliBindingProperties, r StdInParameter) ([]byte, error) {
 		}
 		return out, err
 	}
+
+	return nil, nil
 }

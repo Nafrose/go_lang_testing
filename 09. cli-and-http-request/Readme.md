@@ -109,4 +109,13 @@ clirunner.RunAsync(cliBindingProperties)
 			return out, err
 		}
 	}
+	
+## Module Initialize
 
+```bash
+go mod init github.com/YourName/YourModuleName
+go get new-package
+go get go.uber.org/zap
+go mod tidy
+
+```

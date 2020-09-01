@@ -1,9 +1,9 @@
 package clihelper
 
+import . "github.com/nafrose/exploring/clirunner/clihelper/Structs"
+
 func WriteUsingOutputLoggers(cliBindingProperties CliBindingProperties, line string) {
-	if err != nil {
-		for _, outputLogger = cliBindingProperties.WritersCollection.OutputLoggers {
-			outputLogger.Writer(cliBindingProperties.WritersCollection.WriterConfiguration, line)
-		return out, err
-	}
+	writers := cliBindingProperties.WritersCollection.OutputLoggers
+	wc := cliBindingProperties.WritersCollection.WriterConfiguration
+	WritUsingLoggers(writers, wc, line)
 }

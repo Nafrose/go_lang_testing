@@ -1,16 +1,19 @@
 package clihelper
 
 import "io"
+import . "github.com/nafrose/exploring/clirunner/clihelper/Structs"
 
-func AttachErrorLoggers(c CliBindingProperties, r StdInParameter) ([]byte, error) {
+func AttachErrorLoggers(
+	c CliBindingProperties,
+	r StdInParameter) ([]byte, error) {
 	var out []byte
 	buff := make([]byte, 1, c.CmdRunningInfo.BufferSize)
 	for {
-		n, err := r.stderrIn.Read(buff[:])
+		n, err := r.StderrIn.Read(buff[:])
 		if n > 0 {
 			d := buff[:n]
 			out = append(out, d...)
-			WriteUsingErrorLoggers(&cliBinderProperties, d)
+			WriteUsingErrorLoggers(cliBinderProperties, d)
 		}
 		if err != nil {
 			// Read returns io.EOF at the end of file, which is not an error for us

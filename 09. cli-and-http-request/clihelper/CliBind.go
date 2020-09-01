@@ -1,12 +1,9 @@
 package clihelper
 
 import (
-	"log"
+	. "github.com/nafrose/exploring/clirunner/clihelper/Structs"
 )
 
 func CliBind(c CliBindingProperties, s StdInParameter) {
-		stdout, errStdout := go AttachLoggers(c, s)
-		log.Println(string(stdout))
-		log.Println("Trying to write it out.")
-
+	go AttachLoggers(c, s)
 }
