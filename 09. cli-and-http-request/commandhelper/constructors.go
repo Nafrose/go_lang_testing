@@ -11,7 +11,7 @@ func NewWritersCollectionBuilder() *WritersCollectionBuilder {
 }
 
 func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
-	return &CliBindingPropertiesBuilder{CliBindingProperties: &implementations.CliBindingProperties{}}
+	return &CliBindingPropertiesBuilder{cliBindingProperties: &implementations.CliBindingProperties{}}
 }
 
 func CreateLogWriter(

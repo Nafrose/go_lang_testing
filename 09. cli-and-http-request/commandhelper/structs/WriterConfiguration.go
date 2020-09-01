@@ -5,4 +5,10 @@ type WriterConfiguration struct {
 	IsHttpEnabled        bool
 	ShouldWriteToFile    bool
 	WriteToFileLocation  string
+	LogFilePath          LogFilePath
+}
+
+type LogFilePath struct {
+	OutputFilePath string
+	ErrorLogFilePath string
 }

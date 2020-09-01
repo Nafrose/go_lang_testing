@@ -1,5 +1,6 @@
 package commandloggers
 
+//Todo Fix filenaming as file logger.
 import (
 	. "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
 	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
@@ -10,11 +11,14 @@ type DefaultLogWriter struct {
 	*LogWriterImplementation
 }
 
-func NewDefaultLogWriter() *DefaultLogWriter {
+func NewDefaultLogWriter() *LogWriter {
 	var outWriter Writer = DefaultOutputWriter{}
 	var errorWriter Writer = DefaultErrorWriter{}
+	var logWriter LogWriter = &DefaultLogWriter{
+		LogWriterImplementation: NewLogWriter(&outWriter, &errorWriter),
+	}
 
-	return &DefaultLogWriter{LogWriterImplementation: NewLogWriter(&outWriter, &errorWriter)}
+	return &logWriter
 }
 
 type DefaultErrorWriter struct{}

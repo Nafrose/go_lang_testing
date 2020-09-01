@@ -1,19 +1,31 @@
 package commandhelper
 
-import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+import (
+	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	. "os/exec"
+)
 
 type CliBindingPropertiesBuilder struct {
-	CliBindingProperties *CliBindingProperties
+	cliBindingProperties *CliBindingProperties
 }
 
 func (
 	cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetWriterCollection(
 	writersCollection *WritersCollection) *CliBindingPropertiesBuilder {
-	cliBindingPropertiesBuilder.CliBindingProperties.WritersCollection = writersCollection
+	cliBindingPropertiesBuilder.cliBindingProperties.WritersCollection = writersCollection
 
 	return cliBindingPropertiesBuilder
 }
 
+func (
+cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetExecutor(
+	cmd *Cmd) *CliBindingPropertiesBuilder {
+	cliBindingPropertiesBuilder.cliBindingProperties.Cmd = cmd
+
+	return cliBindingPropertiesBuilder
+}
+
+
 func (cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
-	return cliBindingPropertiesBuilder.CliBindingProperties
+	return cliBindingPropertiesBuilder.cliBindingProperties
 }
