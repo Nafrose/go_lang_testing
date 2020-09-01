@@ -10,6 +10,6 @@ func writUsingLoggers(
 	writers []*Writer,
 	line string) {
 	for _, writer := range writers {
-		(*writer).Writer(cliBindingProperties, line)
+		(*writer).Write(cliBindingProperties, line)
 	}
 }

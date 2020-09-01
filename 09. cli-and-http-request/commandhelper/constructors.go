@@ -14,7 +14,7 @@ func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
 	return &CliBindingPropertiesBuilder{CliBindingProperties: &implementations.CliBindingProperties{}}
 }
 
-func NewLogWriter(
+func CreateLogWriter(
 	outputWriter *Writer,
 	errorWriter *Writer) *implementations.LogWriterImplementation {
 	return implementations.NewLogWriter(outputWriter, errorWriter)
