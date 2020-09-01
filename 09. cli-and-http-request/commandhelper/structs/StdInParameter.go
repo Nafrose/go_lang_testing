@@ -6,13 +6,13 @@ import (
 )
 
 type StdInParameter struct {
-	StdoutIn io.ReadCloser
-	StderrIn io.ReadCloser
+	StdoutIn *io.ReadCloser
+	StderrIn *io.ReadCloser
 }
 
 func NewStdInParameters(cmd *Cmd) *StdInParameter {
 	outIn, _ := cmd.StdoutPipe()
 	errIn, _ := cmd.StderrPipe()
 
-	return &StdInParameter{outIn, errIn}
+	return &StdInParameter{&outIn, &errIn}
 }

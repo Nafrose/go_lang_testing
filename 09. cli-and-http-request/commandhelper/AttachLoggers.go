@@ -5,11 +5,11 @@ import (
 	"io"
 )
 
-type LogWrite func(cliBindingProperties CliBindingProperties, line string)
+type LogWrite func(cliBindingProperties *CliBindingProperties, line string)
 
 func AttachLoggers(
-	cliBindingProperties CliBindingProperties,
-	stdInParameter StdInParameter) {
+	cliBindingProperties *CliBindingProperties,
+	stdInParameter *StdInParameter) {
 	if cliBindingProperties.CmdRunningInfo.IsAsync {
 		go attachInternalLoggers(cliBindingProperties, stdInParameter.StdoutIn, WriteUsingOutputLoggers)
 		go attachInternalLoggers(cliBindingProperties, stdInParameter.StderrIn, WriteUsingErrorLoggers)
@@ -22,12 +22,12 @@ func AttachLoggers(
 }
 
 func attachInternalLoggers(
-	cliBindingProperties CliBindingProperties,
-	readCloser io.ReadCloser,
+	cliBindingProperties *CliBindingProperties,
+	readCloser *io.ReadCloser,
 	logWrite LogWrite) ([]byte, error) {
 	var out []byte
 	buff := make([]byte, 1, cliBindingProperties.CmdRunningInfo.BufferSize)
-	n, err := readCloser.Read(buff[:])
+	n, err := (*readCloser).Read(buff[:])
 	if n > 0 {
 		bufferedSplits := buff[:n]
 		out = append(out, bufferedSplits...)

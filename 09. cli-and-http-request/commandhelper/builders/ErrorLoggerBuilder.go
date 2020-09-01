@@ -8,7 +8,7 @@ type ErrorLoggerBuilder struct {
 
 func (elb *ErrorLoggerBuilder) Add(w *clihelper.Writer) *ErrorLoggerBuilder {
 	elb.WritersCollectionBuilder.WritersCollection.ErrorOutputLoggers =
-		append(elb.WritersCollectionBuilder.WritersCollection.ErrorOutputLoggers, *w)
+		append(elb.WritersCollectionBuilder.WritersCollection.ErrorOutputLoggers, w)
 
 	return elb
 }

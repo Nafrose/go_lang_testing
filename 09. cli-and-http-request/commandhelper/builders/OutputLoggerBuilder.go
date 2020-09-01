@@ -8,7 +8,7 @@ type OutputLoggerBuilder struct {
 
 func (olb *OutputLoggerBuilder) Add(w *clihelper.Writer) *OutputLoggerBuilder {
 	olb.WritersCollectionBuilder.WritersCollection.OutputLoggers =
-		append(olb.WritersCollectionBuilder.WritersCollection.OutputLoggers, *w)
+		append(olb.WritersCollectionBuilder.WritersCollection.OutputLoggers, w)
 
 	return olb
 }
