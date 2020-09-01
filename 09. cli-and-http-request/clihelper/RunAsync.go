@@ -1,18 +1,18 @@
 package clihelper
 
 import "log"
+import . "github.com/nafrose/exploring/clirunner/clihelper/structs"
 
-func RunAsync(c CliBindingProperties) StdInParameter {
-	if c.CliBindingProperties.CmdRunningInfo.IsAsync {
-		var stdout, stderr []byte
-		var stdInParameter StdInParameter
-		var errStdout, errStderr error
-
+func RunAsync(c CliBindingProperties) *StdInParameter {
+	if c.CmdRunningInfo.IsAsync {
 		stdInParameter := NewStdInParameters(c.Cmd)
 		err := c.Cmd.Start()
 		if err != nil {
 			log.Fatalf("cmd.Start() failed with '%s'\n", err)
 		}
+
 		return stdInParameter
 	}
+
+	return nil
 }

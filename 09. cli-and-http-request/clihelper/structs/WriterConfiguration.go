@@ -1,6 +1,9 @@
 package clihelper
 
-import "github.com/nafrose/exploring/clirunner/clihelper"
+import (
+	"github.com/nafrose/exploring/clirunner/clihelper/builders"
+	. "github.com/nafrose/exploring/clirunner/clihelper/interfaces"
+)
 
 type WriterConfiguration struct {
 	IsJsonLoggingEnabled bool
@@ -9,11 +12,13 @@ type WriterConfiguration struct {
 	WriteToFileLocation  string
 }
 
-type LoggerBuilder struct {
-	*clihelper.CliBindingPropertiesBuilder
+type OutputLoggerBuilder struct {
+	*builders.WritersCollectionBuilder
 }
 
-func (receiver *WriterConfiguration) OutputLoggers() *LoggerBuilder {
-	// output builder return
-	return &LoggerBuilder{}
+func (receiver *OutputLoggerBuilder) Add(w *Writer) *OutputLoggerBuilder {
+	receiver.WritersCollectionBuilder.WritersCollection.OutputLoggers =
+		append(receiver.WritersCollectionBuilder.WritersCollection.OutputLoggers, *w)
+
+	return receiver
 }

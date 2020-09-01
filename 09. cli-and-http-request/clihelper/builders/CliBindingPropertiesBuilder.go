@@ -1,18 +1,19 @@
-package clihelper
+package builders
 
 import . "github.com/nafrose/exploring/clirunner/clihelper/structs"
 
 type CliBindingPropertiesBuilder struct {
-	cliBindingProperties *CliBindingProperties
+	CliBindingProperties *CliBindingProperties
 }
 
 func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
 	return &CliBindingPropertiesBuilder{&CliBindingProperties{}}
 }
 
-func (cli *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
-	return cli.cliBindingProperties
+func (cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
+	return cliBindingPropertiesBuilder.CliBindingProperties
 }
+
 //
 //func (cli *CliBindingPropertiesBuilder) WritersCollectionBuild() *WritersCollectionBuilder {
 //	return &WritersCollectionBuilder{*it}
