@@ -5,7 +5,7 @@ import (
 )
 
 type CliBindingProperties struct {
-	WritersCollection WritersCollection
-	CmdRunningInfo    CmdRunningInfo
+	WritersCollection *WritersCollection
+	CmdRunningInfo    *CmdRunningInfo
 	Cmd               *Cmd
 }
