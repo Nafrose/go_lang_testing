@@ -1,4 +1,6 @@
-run: 
+StreamerFolder = "cli-streamer"
+
+run:
 	# Should run with given arguments
 	go run main.go -run create-person-cli
 	go run main.go -run create-person-json
@@ -23,5 +25,7 @@ browser-endpoints:
 
 run-Postman && post:
 	go run main.go
-	localhost:8080/people/create
+	start localhost:8080/people/create
 
+build-steamer:
+	cd $(StreamerFolder) && go build -o "../bin/" cli-streamer.go

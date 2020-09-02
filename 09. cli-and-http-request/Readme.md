@@ -1,4 +1,21 @@
-### Use golang httprouter library
+# CLI Rewrite using DesignPatterns
+
+## Links
+
+- Interfaces:
+  - [Implement interface in GO](https://bit.ly/31M3VYd)
+- Parameters by Reference or Value:
+  - [go - Can functions be passed as parameters? - Stack Overflow](https://stackoverflow.com/questions/12655464/can-functions-be-passed-as-parameters)
+  - [Pass function as an argument to another function in Go (Golang) – Welcome To Golang By Example](https://golangbyexample.com/func-as-func-argument-go/)
+- HttpRouter:
+  - [julienschmidt/httprouter: A high performance HTTP request router that scales well](https://github.com/julienschmidt/httprouter)
+  - [httprouter - GoDoc](https://godoc.org/github.com/julienschmidt/httprouter)
+  - [go - How to stop http.ListenAndServe() - Stack Overflow](https://stackoverflow.com/questions/39320025/how-to-stop-http-listenandserve)
+  - [express - Golang httpRouter returns the last response when used with the slice of functions - Stack Overflow](https://stackoverflow.com/questions/39905623/golang-httprouter-returns-the-last-response-when-used-with-the-slice-of-function)
+  - [go - why goroutine block main func in this http server? - Stack Overflow](https://stackoverflow.com/questions/43861055/why-goroutine-block-main-func-in-this-http-server)
+  - [go - How to pass a httprouter.Handle to a Prometheus http.HandleFunc - Stack Overflow](https://stackoverflow.com/questions/55737480/how-to-pass-a-httprouter-handle-to-a-prometheus-http-handlefunc)
+
+## Use golang httprouter library
 Create HTTP endpoints which can serve REST Content:
 
 Create data-struct as person.sample.json
@@ -35,9 +52,9 @@ create 5 person using the same struct. Use cli command to take input from user a
   
   localhost:8080/firstName/alim Http-GET : will get a person as JSON with first name contains alim.
 
-
 ## Steps to perform for enhancements
 
+```notes
 CliBindingPropertiesBuilder.
   OutputLoggers().Add(outputLogger).
   ErrorLoggers().Add(errorLogger).
@@ -109,13 +126,7 @@ clirunner.RunAsync(cliBindingProperties)
 			return out, err
 		}
 	}
-	
-	
-## Links
-
-- [Implement interface in GO](https://bit.ly/31M3VYd)
-- [go - Can functions be passed as parameters? - Stack Overflow](https://stackoverflow.com/questions/12655464/can-functions-be-passed-as-parameters)
-- [Pass function as an argument to another function in Go (Golang) – Welcome To Golang By Example](https://golangbyexample.com/func-as-func-argument-go/)
+```
 
 ## Module Initialize
 

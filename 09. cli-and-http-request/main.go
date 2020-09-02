@@ -7,6 +7,10 @@ import (
 	"os/exec"
 )
 
+const (
+	CliStreamerExec = "cli-streamer.exe"
+)
+
 func runCli() {
 	writersCollection := NewWritersCollection()
 	cliBindingProperties := GetCliBindingProperties(writersCollection)
@@ -16,7 +20,7 @@ func runCli() {
 func GetCliBindingProperties(
 	writersCollection *commandhelper.WritersCollection) *commandhelper.CliBindingProperties {
 	cmd := exec.Cmd{
-		Path: "",
+		Path: CliStreamerExec,
 		Args: nil,
 	}
 
