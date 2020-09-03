@@ -14,17 +14,16 @@
   - [express - Golang httpRouter returns the last response when used with the slice of functions - Stack Overflow](https://stackoverflow.com/questions/39905623/golang-httprouter-returns-the-last-response-when-used-with-the-slice-of-function)
   - [go - why goroutine block main func in this http server? - Stack Overflow](https://stackoverflow.com/questions/43861055/why-goroutine-block-main-func-in-this-http-server)
   - [go - How to pass a httprouter.Handle to a Prometheus http.HandleFunc - Stack Overflow](https://stackoverflow.com/questions/55737480/how-to-pass-a-httprouter-handle-to-a-prometheus-http-handlefunc)
+  - [express - Golang httpRouter returns the last response when used with the slice of functions - Stack Overflow](https://stackoverflow.com/questions/39905623/golang-httprouter-returns-the-last-response-when-used-with-the-slice-of-function)
   - Shutdown
     - [Graceful shutdown · Issue #253 · julienschmidt/httprouter](https://github.com/julienschmidt/httprouter/issues/253)
     - [go - How to stop http.ListenAndServe() - Stack Overflow](https://stackoverflow.com/questions/39320025/how-to-stop-http-listenandserve)
 
 ## Use golang httprouter library
 
-Create HTTP endpoints which can serve REST Content:
-
-Create data-struct as person.sample.json
-
-create 5 person using the same struct. Use cli command to take input from user and then add it to the JSON list (Hint use slice peopleSlice := make([]PersonType, length: 0, capacity: 10) and then peopleSlice = append(peopleSlice, newPerson) eg. Slice Example)
+- Create HTTP endpoints which can serve REST Content:
+  - Create data-struct as person.sample.json
+  - create 5 person using the same struct. Use cli command to take input from user and then add it to the JSON list (Hint use slice peopleSlice := make([]PersonType, length: 0, capacity: 10) and then peopleSlice = append(peopleSlice, newPerson) eg. Slice Example)
 
 ## CLI options
 
@@ -77,10 +76,10 @@ clirunner.RunAsync(cliBindingProperties)
 	}
 	-> stdoutIn, stderrIn -> stdInParameter(output, error)
 	-> delegation (..) -> CliBind(cliBindingProperties, stdInParameter)
-           -> CliBind(..) execute lines 107-116
-               -> Line 110 stdout, errStdout = attachLoggers(cliBindingProperties, stdInParameter)
-                    -> attachLoggers(....)
-                           -> 
+			-> CliBind(..) execute lines 107-116
+				-> Line 110 stdout, errStdout = attachLoggers(cliBindingProperties, stdInParameter)
+					-> attachLoggers(....)
+							-> 
 	attachLoggers(cliBindingProperties, r stdInParameter) 
 						
 	var out []byte
