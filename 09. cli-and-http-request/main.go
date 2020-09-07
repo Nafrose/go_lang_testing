@@ -1,10 +1,11 @@
 package main
 
 import (
-	cmdhelper "github.com/nafrose/exploring/clirunner/commandhelper"
-	commandhelper "github.com/nafrose/exploring/clirunner/commandhelper/structs"
-	commandloggers "github.com/nafrose/exploring/clirunner/commandlogger/default-loggers"
 	"os/exec"
+
+	cmdhelper "github.com/nafrose/exploring/clirunner/commandhelper"
+	commandhelper "github.com/nafrose/exploring/clirunner/commandhelper/core"
+	commandloggers "github.com/nafrose/exploring/clirunner/commandlogger/default-loggers"
 )
 
 const (

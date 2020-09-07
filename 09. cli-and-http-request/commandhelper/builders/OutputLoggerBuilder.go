@@ -1,6 +1,6 @@
 package commandhelper
 
-import . "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
+import . "github.com/nafrose/exploring/clirunner/commandhelper/core"
 
 type OutputLoggerBuilder struct {
 	*WritersCollectionBuilder

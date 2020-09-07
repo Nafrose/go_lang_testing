@@ -3,8 +3,7 @@ package commandloggers
 import (
 	"log"
 
-	. "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	. "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 type DefaultOutputWriter struct{}

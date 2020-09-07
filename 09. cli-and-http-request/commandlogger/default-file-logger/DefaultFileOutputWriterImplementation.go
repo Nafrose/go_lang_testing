@@ -1,9 +1,10 @@
 package commandloggers
 
 import (
-	"github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	"io/ioutil"
 	"sync"
+
+	commandhelper "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 type DefaultFileOutputWriterImplementation struct{}

@@ -1,8 +1,10 @@
 package commandhelper
 
-import "log"
+import (
+	"log"
 
-// import . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	. "github.com/nafrose/exploring/clirunner/commandhelper/core"
+)
 
 func RunAsync(c *CliBindingProperties) *StdInParameter {
 	if c.CmdRunningInfo.IsAsync {

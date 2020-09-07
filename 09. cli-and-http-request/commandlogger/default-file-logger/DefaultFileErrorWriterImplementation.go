@@ -3,7 +3,7 @@ package commandloggers
 import (
 	"io/ioutil"
 
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	. "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 type DefaultFileErrorWriterImplementation struct{}

@@ -1,8 +1,9 @@
 package commandhelper
 
 import (
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	. "os/exec"
+
+	. "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 type CliBindingPropertiesBuilder struct {
@@ -18,13 +19,12 @@ func (
 }
 
 func (
-cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetExecutor(
+	cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetExecutor(
 	cmd *Cmd) *CliBindingPropertiesBuilder {
 	cliBindingPropertiesBuilder.cliBindingProperties.Cmd = cmd
 
 	return cliBindingPropertiesBuilder
 }
-
 
 func (cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
 	return cliBindingPropertiesBuilder.cliBindingProperties

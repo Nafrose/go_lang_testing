@@ -1,6 +1,8 @@
 package commandhelper
 
-import "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
+import commandhelper "github.com/nafrose/exploring/clirunner/commandhelper/core"
+
+// import "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
 
 type ErrorLoggerBuilder struct {
 	*WritersCollectionBuilder

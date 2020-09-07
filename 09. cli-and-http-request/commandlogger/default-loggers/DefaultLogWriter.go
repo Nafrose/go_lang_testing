@@ -1,8 +1,7 @@
 package commandloggers
 
 import (
-	. "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	. "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 type DefaultLogWriter struct {
