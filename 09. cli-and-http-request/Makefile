@@ -1,4 +1,4 @@
-StreamerFolder = "cli-streamer"
+StreamerFolder = "cmd/cli-streamer"
 
 run:
 	# Should run with given arguments
@@ -27,5 +27,5 @@ run-Postman && post:
 	go run main.go
 	start localhost:8080/people/create
 
-build-steamer:
-	cd $(StreamerFolder) && go build -o "../bin/" cli-streamer.go
+build-streamer:
+	cd $(StreamerFolder) && go build -o "../../bin/" cli-streamer.go
