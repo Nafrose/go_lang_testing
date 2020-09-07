@@ -1,11 +1,11 @@
 package commandhelper
 
 import (
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	"io"
+	// . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 )
 
-type logWrite func(cliBindingProperties *CliBindingProperties, line string)
+// type logWrite func(cliBindingProperties *CliBindingProperties, line string)
 
 func attachCliBindingPropertiesLoggers(
 	cliBindingProperties *CliBindingProperties,

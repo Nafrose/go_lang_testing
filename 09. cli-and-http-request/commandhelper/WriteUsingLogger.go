@@ -1,9 +1,7 @@
 package commandhelper
 
-import (
-	. "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
-)
+// . "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
+// . "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 
 func writUsingLoggers(
 	cliBindingProperties *CliBindingProperties,

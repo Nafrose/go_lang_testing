@@ -1,6 +1,6 @@
 package commandhelper
 
-import . "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
+// import . "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
 
 type LogWriterImplementation struct {
 	outputLogWriter *Writer

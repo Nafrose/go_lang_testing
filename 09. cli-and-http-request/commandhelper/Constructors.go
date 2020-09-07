@@ -2,8 +2,8 @@ package commandhelper
 
 import (
 	. "github.com/nafrose/exploring/clirunner/commandhelper/builders"
-	. "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
-	implementations "github.com/nafrose/exploring/clirunner/commandhelper/structs"
+	// . "github.com/nafrose/exploring/clirunner/commandhelper/interfaces"
+	implementations "github.com/nafrose/exploring/clirunner/commandhelper/core"
 )
 
 func NewWritersCollectionBuilder() *WritersCollectionBuilder {
