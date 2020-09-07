@@ -1,4 +1,4 @@
-StreamerFolder = "cli-streamer"
+StreamerFolder = "/cli-streamer"
 
 run:
 	# Should run with given arguments

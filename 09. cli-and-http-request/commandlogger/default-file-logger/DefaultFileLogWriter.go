@@ -15,4 +15,3 @@ func NewDefaultFileLogWriter() *DefaultFileLogWriter {
 
 	return &DefaultFileLogWriter{LogWriterImplementation: NewLogWriter(&outWriter, &errorWriter)}
 }
-

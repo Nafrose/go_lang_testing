@@ -1,8 +1,9 @@
 package commandloggers
 
 import (
-	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 	"io/ioutil"
+
+	. "github.com/nafrose/exploring/clirunner/commandhelper/structs"
 )
 
 type DefaultFileErrorWriterImplementation struct{}
@@ -27,4 +28,3 @@ func (receiver *DefaultFileErrorWriterImplementation) Write(
 
 	outputMutex.Unlock()
 }
-
