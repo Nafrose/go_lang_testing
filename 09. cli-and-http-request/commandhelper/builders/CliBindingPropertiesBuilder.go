@@ -7,13 +7,13 @@ import (
 )
 
 type CliBindingPropertiesBuilder struct {
-	cliBindingProperties *CliBindingProperties
+	CliBindingProperties *CliBindingProperties
 }
 
 func (
 	cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetWriterCollection(
 	writersCollection *WritersCollection) *CliBindingPropertiesBuilder {
-	cliBindingPropertiesBuilder.cliBindingProperties.WritersCollection = writersCollection
+	cliBindingPropertiesBuilder.CliBindingProperties.WritersCollection = writersCollection
 
 	return cliBindingPropertiesBuilder
 }
@@ -21,11 +21,11 @@ func (
 func (
 	cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) SetExecutor(
 	cmd *Cmd) *CliBindingPropertiesBuilder {
-	cliBindingPropertiesBuilder.cliBindingProperties.Cmd = cmd
+	cliBindingPropertiesBuilder.CliBindingProperties.Cmd = cmd
 
 	return cliBindingPropertiesBuilder
 }
 
 func (cliBindingPropertiesBuilder *CliBindingPropertiesBuilder) Build() *CliBindingProperties {
-	return cliBindingPropertiesBuilder.cliBindingProperties
+	return cliBindingPropertiesBuilder.CliBindingProperties
 }

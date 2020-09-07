@@ -10,11 +10,11 @@ func NewWritersCollectionBuilder() *WritersCollectionBuilder {
 }
 
 func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
-	return &CliBindingPropertiesBuilder{cliBindingProperties: &implementations.CliBindingProperties{}}
+	return &CliBindingPropertiesBuilder{CliBindingProperties: &implementations.CliBindingProperties{}}
 }
 
-func CreateLogWriter(
-	outputWriter *Writer,
-	errorWriter *Writer) *implementations.LogWriterImplementation {
-	return implementations.NewLogWriter(outputWriter, errorWriter)
-}
+// func CreateLogWriter(
+// 	outputWriter *Writer,
+// 	errorWriter *Writer) *implementations.LogWriterImplementation {
+// 	return implementations.NewLogWriter(outputWriter, errorWriter)
+// }
