@@ -13,8 +13,12 @@ run:
 	go run main.go -get people-plain/id-and-firstname
 	go run main.go -throw "message"
 
+build:
+	make build-main
+
 build-main:
 	# make build main
+	make build-streamer
 	go build main.go
 
 browser-endpoints:

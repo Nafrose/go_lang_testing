@@ -1,4 +1,4 @@
-package commandhelper
+package interfaces
 
 type LogWriter interface {
 	OutputWriter() *Writer

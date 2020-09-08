@@ -1,4 +1,4 @@
-package commandhelper
+package core
 
 type WriterConfiguration struct {
 	IsJsonLoggingEnabled bool
@@ -9,6 +9,6 @@ type WriterConfiguration struct {
 }
 
 type LogFilePath struct {
-	OutputFilePath string
+	OutputFilePath   string
 	ErrorLogFilePath string
 }

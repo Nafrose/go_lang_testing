@@ -1,4 +1,4 @@
-package commandhelper
+package structs
 
 import (
 	"io"
