@@ -13,8 +13,8 @@ func NewCliBindingPropertiesBuilder() *CliBindingPropertiesBuilder {
 	return &CliBindingPropertiesBuilder{CliBindingProperties: &implementations.CliBindingProperties{}}
 }
 
-// func CreateLogWriter(
-// 	outputWriter *Writer,
-// 	errorWriter *Writer) *implementations.LogWriterImplementation {
-// 	return implementations.NewLogWriter(outputWriter, errorWriter)
-// }
+func CreateLogWriter(
+	outputWriter *implementations.Writer,
+	errorWriter *implementations.Writer) *implementations.LogWriterImplementation {
+	return implementations.NewLogWriter(outputWriter, errorWriter)
+}
