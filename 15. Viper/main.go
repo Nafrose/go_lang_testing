@@ -18,4 +18,5 @@ func main() {
 	fmt.Printf("Using config: %s\n", viper.ConfigFileUsed())
 
 	fmt.Println(viper.GetFloat64("ram.minimumfreeSpace.size"))
+	fmt.Println(viper.GetFloat64("processor.maxUsages.percentage"))
 }
