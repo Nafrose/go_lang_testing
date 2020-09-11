@@ -1,0 +1,26 @@
+{
+  "storage": {
+    "minimumSpace": {
+      "size": "1",
+      "quantifier": "gb"
+    }
+  },
+  "ram": {
+    "minimumfreeSpace": {
+      "size": "500",
+      "quantifier": "mb"
+    },
+    "percentage":{
+      "totalRam": {
+        "size": "2000",
+        "quantifier": "mb"
+      },
+      "lessThan": 95
+    }
+  },
+  "processor":{
+    "maxUsages": {
+      "percentage": "97"
+    }
+  }
+}
