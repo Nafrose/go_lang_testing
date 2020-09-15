@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "enabled": true,
+    "host": "192.168.1.2",
+    "port": "8082"
+  },
+  "prod": {
+    "enabled": true,
+    "host": "192.168.1.1",
+    "port": "8081"
+  },
+  "qa": {
+    "enabled": true,
+    "host": "192.168.1.3",
+    "port": "8083"
+  }
+}
